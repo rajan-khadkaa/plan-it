@@ -37,8 +37,10 @@ exports.addUser = async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true, // Temporarily false for testing
-      secure: false,
-      sameSite: "lax",
+      // secure: false,
+      // sameSite: "lax",
+      secure: true, // Ensures cookies are only sent over HTTPS
+      sameSite: "none", // Allows cross-origin cookies
       path: "/",
     });
     // console.log("Setting cookie: ", token);
@@ -80,8 +82,10 @@ exports.logoutUser = async (req, res) => {
   try {
     res.clearCookie("token", {
       httpOnly: true,
-      secure: false,
-      sameSite: "lax",
+      // secure: false,
+      // sameSite: "lax",
+      secure: true, // Ensures cookies are only sent over HTTPS
+      sameSite: "none", // Allows cross-origin cookies
       path: "/",
     });
     res.status(200).json({ message: "User logged out." });
