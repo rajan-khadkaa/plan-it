@@ -27,6 +27,10 @@ app.use("/idea", ideaRoute);
 app.use("/plan", planRoute);
 app.use("/user", userRoute);
 
+app.get("/", (req, res) => {
+  res.send("Hello from Plan-It");
+});
+
 mongoose
   .connect(MONGO_URI, { dbName: "plan-it" })
   .then(() => {
