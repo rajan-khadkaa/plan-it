@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #fefefe;
+}
+
+/* *,
+*::before,
+*::after {
+  box-sizing: border-box;
+} */
+
+@font-face {
+  font-family: "Light";
+  src: local("Urbanist-Light"),
+    url("./fonts/Urbanist-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Regular";
+  src: local("Urbanist-Regular"),
+    url("./fonts/Urbanist-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Medium";
+  src: local("Urbanist-Medium"),
+    url("./fonts/Urbanist-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "SemiBold";
+  src: local("Urbanist-SemiBold"),
+    url("./fonts/Urbanist-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Bold";
+  src: local("Urbanist-Bold"),
+    url("./fonts/Urbanist-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "ExtraBold";
+  src: local("Urbanist-ExtraBold"),
+    url("./fonts/Urbanist-ExtraBold.ttf") format("truetype");
+}

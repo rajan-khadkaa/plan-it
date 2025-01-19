@@ -1,0 +1,199 @@
+IDEAS
+
+[
+  {
+    "userId": "677e9b24570b8e22c93e9533",
+    "title": "Green Desk",
+    "content": "Add indoor plants to workspaces for improved focus and air quality.",
+    "tags": ["Health", "Creativity"]
+  },
+  {
+    "userId": "677e9b24570b8e22c93e9533",
+    "title": "Daily Fact",
+    "content": "Share one new interesting fact every day to improve knowledge and spark conversations.",
+    "tags": ["Knowledge", "Creativity"]
+  },
+  {
+    "userId": "677e9b24570b8e22c93e9533",
+    "title": "AI Notes",
+    "content": "Use AI tools to summarize meeting notes for better time management and focus on actions.",
+    "tags": ["Career", "Knowledge"]
+  },
+  {
+    "userId": "677e9b24570b8e22c93e9533",
+    "title": "Recycled Art",
+    "content": "Create art pieces using discarded items like plastic bottles or old newspapers.",
+    "tags": ["Creativity", "Other"]
+  },
+  {
+    "userId": "677e9b24570b8e22c93e9533",
+    "title": "Save Coins",
+    "content": "Design an app to track small daily savings for big future goals.",
+    "tags": ["Finance", "Health"]
+  },
+  {
+    "userId": "677e9b24570b8e22c93e9533",
+    "title": "Quick Workout",
+    "content": "Develop a 7-minute workout plan for busy professionals to stay active.",
+    "tags": ["Health", "Career"]
+  },
+  {
+    "userId": "677e9b24570b8e22c93e9533",
+    "title": "Healthy Desk",
+    "content": "Suggest ergonomic desk setups to prevent back pain and improve posture.",
+    "tags": ["Health", "Career"]
+  },
+  {
+    "userId": "677e9b24570b8e22c93e9533",
+    "title": "Brain Timer",
+    "content": "Use a timer to focus on creative tasks for short bursts, like brainstorming.",
+    "tags": ["Knowledge", "Creativity"]
+  },
+  {
+    "userId": "677e9b24570b8e22c93e9533",
+    "title": "Online Goals",
+    "content": "Share goals online with peers for accountability and progress tracking.",
+    "tags": ["Career", "Knowledge"]
+  }
+]
+
+
+
+PLAN - SHORT TERM
+
+[
+  {
+    "userId": "63bdfba9cfbfc1e5e768f7a3",
+    "title": "Complete React.js Project",
+    "message": "Build and deploy a full-stack MERN project by February 15th.",
+    "date": "2025-02-15T00:00:00.000Z",
+    "lock": false
+  },
+  {
+    "userId": "63bdfba9cfbfc1e5e768f7a3",
+    "title": "Join a Gym",
+    "message": "Visit nearby gyms and register by January 20th.",
+    "date": "2025-01-20T00:00:00.000Z",
+    "lock": false
+  },
+  {
+    "userId": "63bdfba9cfbfc1e5e768f7a3",
+    "title": "Publish First Blog Post",
+    "message": "Write, edit, and publish the first blog post by March 1st.",
+    "date": "2025-03-01T00:00:00.000Z",
+    "lock": false
+  },
+  {
+    "userId": "63bdfba9cfbfc1e5e768f7a3",
+    "title": "Daily Walks",
+    "message": "Start taking a 30-minute walk every evening from January 10th.",
+    "date": "2025-01-10T00:00:00.000Z",
+    "lock": false
+  },
+  {
+    "userId": "63bdfba9cfbfc1e5e768f7a3",
+    "title": "Read a Book",
+    "message": "Finish reading 'Atomic Habits' by February 28th.",
+    "date": "2025-02-28T00:00:00.000Z",
+    "lock": false
+  },
+  {
+    "userId": "63bdfba9cfbfc1e5e768f7a3",
+    "title": "Healthy Meal Prep",
+    "message": "Plan and prepare weekly healthy meals starting January 15th.",
+    "date": "2025-01-15T00:00:00.000Z",
+    "lock": false
+  },
+  {
+    "userId": "63bdfba9cfbfc1e5e768f7a3",
+    "title": "Launch Portfolio Website",
+    "message": "Complete and launch a personal portfolio website by February 5th.",
+    "date": "2025-02-05T00:00:00.000Z",
+    "lock": false
+  },
+  {
+    "userId": "63bdfba9cfbfc1e5e768f7a3",
+    "title": "Start Meditation",
+    "message": "Practice 10 minutes of meditation daily starting January 12th.",
+    "date": "2025-01-12T00:00:00.000Z",
+    "lock": false
+  },
+  {
+    "userId": "63bdfba9cfbfc1e5e768f7a3",
+    "title": "Learn CSS Grid",
+    "message": "Master CSS Grid by following a tutorial series by February 20th.",
+    "date": "2025-02-20T00:00:00.000Z",
+    "lock": false
+  },
+  {
+    "userId": "63bdfba9cfbfc1e5e768f7a3",
+    "title": "Volunteer",
+    "message": "Participate in a local community cleanup event on March 15th.",
+    "date": "2025-03-15T00:00:00.000Z",
+    "lock": false
+  }
+]
+
+
+
+
+PLAN - LONG TERM
+
+[
+  {
+    "userId": "63bdfba9cfbfc1e5e768f7a3",
+    "title": "First Marathon",
+    "message": "Train for and complete a full marathon by December 10, 2025.",
+    "date": "2025-12-10T00:00:00.000Z",
+    "lock": true
+  },
+  {
+    "userId": "63bdfba9cfbfc1e5e768f7a3",
+    "title": "Save $10,000",
+    "message": "Build a savings fund of $10,000 by January 1, 2027.",
+    "date": "2027-01-01T00:00:00.000Z",
+    "lock": true
+  },
+  {
+    "userId": "63bdfba9cfbfc1e5e768f7a3",
+    "title": "Read 12 Books",
+    "message": "Finish reading 12 books across different genres by June 30, 2026.",
+    "date": "2026-06-30T00:00:00.000Z",
+    "lock": true
+  },
+  {
+    "userId": "63bdfba9cfbfc1e5e768f7a3",
+    "title": "Launch Side Business",
+    "message": "Develop and launch a profitable side business by August 15, 2026.",
+    "date": "2026-08-15T00:00:00.000Z",
+    "lock": true
+  },
+  {
+    "userId": "63bdfba9cfbfc1e5e768f7a3",
+    "title": "Achieve Fitness Goal",
+    "message": "Reach target weight and maintain it by March 1, 2026.",
+    "date": "2026-03-01T00:00:00.000Z",
+    "lock": true
+  },
+  {
+    "userId": "63bdfba9cfbfc1e5e768f7a3",
+    "title": "Learn New Skill",
+    "message": "Master a new skill like photography or cooking by October 20, 2025.",
+    "date": "2025-10-20T00:00:00.000Z",
+    "lock": true
+  },
+  {
+    "userId": "63bdfba9cfbfc1e5e768f7a3",
+    "title": "Travel to 5 Places",
+    "message": "Visit 5 new destinations by December 31, 2026.",
+    "date": "2026-12-31T00:00:00.000Z",
+    "lock": true
+  },
+  {
+    "userId": "63bdfba9cfbfc1e5e768f7a3",
+    "title": "Write a Book",
+    "message": "Finish writing a personal or professional book by September 1, 2026.",
+    "date": "2026-09-01T00:00:00.000Z",
+    "lock": true
+  }
+]
