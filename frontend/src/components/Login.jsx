@@ -13,7 +13,7 @@ function Login() {
       const auth = getAuth(app);
       const result = await signInWithPopup(auth, provider);
       const token = await result.user.getIdToken();
-      // console.log("token is: ", token);
+      console.log("token is: ", token);
       await api
         .post(
           "/user/login",
