@@ -13,7 +13,7 @@ function Login() {
       const auth = getAuth(app);
       const result = await signInWithPopup(auth, provider);
       const token = await result.user.getIdToken();
-      console.log("token is: ", token);
+      // console.log("token is: ", token);
       await api
         .post(
           "/user/login",
@@ -23,7 +23,7 @@ function Login() {
           }
         )
         .then((res) => {
-          console.log(res.data.message);
+          // console.log(res.data.message);
           // const cookies = document.cookie;  //can't access because of httpOnly: true in backend
           // console.log("cookies are: ", cookies);
           // if (cookies.includes("token")) {
