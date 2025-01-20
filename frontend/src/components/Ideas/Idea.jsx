@@ -102,27 +102,28 @@ function Idea() {
               // accept="image/*"
               onChange={(event) => setImage(event.target.files[0])}
             /> */}
-            <input
-              id="file-input"
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={handleFileChange}
-            />
-            <label
-              htmlFor="file-input"
-              className="cursor-pointer bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all"
-            >
-              Choose File
-            </label>
-            {imageName ? (
-              <p className="text-sm text-gray-600 mt-2">
-                Selected: {imageName}
-              </p>
-            ) : (
-              <p className="text-sm text-gray-400 mt-2">No file chosen</p>
-            )}
-
+            <div className="flex items-center gap-2 w-full">
+              <input
+                id="file-input"
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={handleFileChange}
+              />
+              <label
+                htmlFor="file-input"
+                className="cursor-pointer min-w-fit bg-blue-100 text-blue-400 px-4 py-2 rounded-md hover:bg-blue-300 hover:text-white transition-all"
+              >
+                Choose Image
+              </label>
+              {imageName ? (
+                <p className="text-sm text-gray-600 scrollbar-thin overflow-y-auto scroll">
+                  Selected: {imageName}
+                </p>
+              ) : (
+                <p className="text-sm text-gray-400 ">No file chosen</p>
+              )}
+            </div>
             <div className="w-full flex flex-col gap-4 mt-4">
               <p className="text-gray-400">
                 Choose the tags that best describe your idea.
@@ -133,9 +134,7 @@ function Idea() {
                   type="button"
                   onClick={() => handleTag("Finance")}
                   className={`${
-                    tags.includes("Finance")
-                      ? "bg-gray-300 text-gray-600"
-                      : "bg-gray-100"
+                    tags.includes("Finance") ? "bg-blue-100" : "bg-gray-100"
                   } flex gap-[4.9px] justify-center items-center px-8 py-2 rounded-2xl`}
                 >
                   <BanknotesIcon className="size-4 stroke-[1.6px] text-sky-600" />
@@ -147,7 +146,7 @@ function Idea() {
                   type="button"
                   onClick={() => handleTag("Knowledge")}
                   className={`${
-                    tags.includes("Knowledge") ? "bg-orange-100" : "bg-gray-100"
+                    tags.includes("Knowledge") ? "bg-blue-100" : "bg-gray-100"
                   } flex gap-[4.9px] justify-center items-center px-8 py-2 rounded-2xl`}
                 >
                   <LightBulbIcon className="size-4 stroke-[1.6px] text-orange-600" />
@@ -171,7 +170,7 @@ function Idea() {
                   type="button"
                   onClick={() => handleTag("Health")}
                   className={`${
-                    tags.includes("Health") ? "bg-green-100" : "bg-gray-100"
+                    tags.includes("Health") ? "bg-blue-100" : "bg-gray-100"
                   } flex gap-[4.9px] justify-center items-center px-8 py-2 rounded-2xl`}
                 >
                   <HeartIcon className="size-4 stroke-[1.6px] text-green-600" />
@@ -183,7 +182,7 @@ function Idea() {
                   type="button"
                   onClick={() => handleTag("Creativity")}
                   className={`${
-                    tags.includes("Creativity") ? "bg-teal-100" : "bg-gray-100"
+                    tags.includes("Creativity") ? "bg-blue-100" : "bg-gray-100"
                   } flex gap-[4.9px] justify-center items-center px-8 py-2 rounded-2xl`}
                 >
                   <PencilSquareIcon className="size-4 stroke-[1.6px] text-teal-600" />
@@ -195,9 +194,7 @@ function Idea() {
                   type="button"
                   onClick={() => handleTag("Technology")}
                   className={`${
-                    tags.includes("Technology")
-                      ? "bg-indigo-100"
-                      : "bg-gray-100"
+                    tags.includes("Technology") ? "bg-blue-100" : "bg-gray-100"
                   } flex gap-[4.9px] justify-center items-center px-8 py-2 rounded-2xl`}
                 >
                   <CpuChipIcon className="size-4 stroke-[1.6px] text-indigo-600" />
@@ -209,7 +206,7 @@ function Idea() {
                   type="button"
                   onClick={() => handleTag("Lifestyle")}
                   className={`${
-                    tags.includes("Lifestyle") ? "bg-cyan-100" : "bg-gray-100"
+                    tags.includes("Lifestyle") ? "bg-blue-100" : "bg-gray-100"
                   } flex gap-[4.9px] justify-center items-center px-8 py-2 rounded-2xl`}
                 >
                   <SparklesIcon className="size-4 stroke-[1.6px] text-cyan-600" />
@@ -221,7 +218,7 @@ function Idea() {
                   type="button"
                   onClick={() => handleTag("Other")}
                   className={`${
-                    tags.includes("Other") ? "bg-purple-100" : "bg-gray-100"
+                    tags.includes("Other") ? "bg-blue-100" : "bg-gray-100"
                   } flex gap-[4.9px] justify-center items-center px-8 py-2 rounded-2xl`}
                 >
                   <TagIcon className="size-4 stroke-[1.6px] text-purple-600" />
