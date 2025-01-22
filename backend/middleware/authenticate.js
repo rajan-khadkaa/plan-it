@@ -28,6 +28,15 @@ const authenticate = async (req, res, next) => {
   }
 };
 
+//local offline test
+// const authenticate = async (req, res, next) => {
+//   try {
+//     next();
+//   } catch (error) {
+//     res.status(500).json({ messaage: "Internal server error." });
+//   }
+// };
+
 module.exports = authenticate;
 
 // const authenticate = async (req, res, next) => {

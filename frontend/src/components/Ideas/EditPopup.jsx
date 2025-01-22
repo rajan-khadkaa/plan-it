@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   HeartIcon,
   BanknotesIcon,
@@ -12,23 +13,50 @@ import {
   CheckCircleIcon,
   BookmarkIcon,
 } from "@heroicons/react/24/outline";
+import api from "../../api/api.js";
+import { toast } from "react-toastify";
 
 function EditPopup({ idea, onClose }) {
+  const navigate = useNavigate();
   if (!idea) return null;
 
   const [tags, setTags] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [image, setImage] = useState(null);
-  const [imageName, setImageName] = useState("");
+  // const [image, setImage] = useState(null);
+  // const [imageName, setImageName] = useState("");
+
+  useEffect(() => {
+    setTitle(idea.title);
+    setContent(idea.content);
+    setTags(idea.tags);
+  }, []);
+
+  // setImageName("");
 
   //   setTags(idea.tags);
   //   setTitle(idea.title);
   //   setContent(idea.content);
   //   if (idea.image) setImage(idea.image);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    const updateData = { title, content, tags };
+    // console.log("idea being sent to backend: ", updateData);
+    await api
+      .put(`/idea/${idea._id}`, updateData)
+      .then(() => {
+        toast.success("Idea updated!");
+      })
+      .then(() =>
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000)
+      )
+      .catch((error) => {
+        console.log(error);
+        toast.error("SOmething went wrong. Try again.");
+      });
   };
   //   const handleReset = (event) => {
   //     event.preventDefault();
@@ -43,13 +71,14 @@ function EditPopup({ idea, onClose }) {
     }
   };
 
-  const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
-    if (selectedFile) {
-      setImage(selectedFile);
-      setImageName(selectedFile.name);
-    }
-  };
+  // for later use if edit image feature is needed
+  // const handleFileChange = (event) => {
+  //   const selectedFile = event.target.files[0];
+  //   if (selectedFile) {
+  //     setImage(selectedFile);
+  //     setImageName(selectedFile.name);
+  //   }
+  // };
 
   return (
     // <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
@@ -89,7 +118,7 @@ function EditPopup({ idea, onClose }) {
               // accept="image/*"
               onChange={(event) => setImage(event.target.files[0])}
             /> */}
-            <input
+            {/* <input
               id="file-input"
               type="file"
               accept="image/*"
@@ -110,7 +139,7 @@ function EditPopup({ idea, onClose }) {
               ) : (
                 <p className="text-sm text-gray-400 mt-2">No file chosen</p>
               )}
-            </div>
+            </div> */}
             <div className="w-full flex flex-col gap-4 mt-4">
               <p className="text-gray-400">
                 Choose the tags that best describe your idea.
@@ -121,7 +150,7 @@ function EditPopup({ idea, onClose }) {
                   type="button"
                   onClick={() => handleTag("Finance")}
                   className={`${
-                    tags.includes("Finance") ? "bg-sky-100" : "bg-gray-100"
+                    tags.includes("Finance") ? "bg-blue-100" : "bg-gray-100"
                   } flex gap-[4.9px] justify-center items-center px-8 py-2 rounded-2xl`}
                 >
                   <BanknotesIcon className="size-4 stroke-[1.6px] text-sky-600" />
@@ -133,7 +162,7 @@ function EditPopup({ idea, onClose }) {
                   type="button"
                   onClick={() => handleTag("Knowledge")}
                   className={`${
-                    tags.includes("Knowledge") ? "bg-orange-100" : "bg-gray-100"
+                    tags.includes("Knowledge") ? "bg-blue-100" : "bg-gray-100"
                   } flex gap-[4.9px] justify-center items-center px-8 py-2 rounded-2xl`}
                 >
                   <LightBulbIcon className="size-4 stroke-[1.6px] text-orange-600" />
@@ -157,7 +186,7 @@ function EditPopup({ idea, onClose }) {
                   type="button"
                   onClick={() => handleTag("Health")}
                   className={`${
-                    tags.includes("Health") ? "bg-green-100" : "bg-gray-100"
+                    tags.includes("Health") ? "bg-blue-100" : "bg-gray-100"
                   } flex gap-[4.9px] justify-center items-center px-8 py-2 rounded-2xl`}
                 >
                   <HeartIcon className="size-4 stroke-[1.6px] text-green-600" />
@@ -169,7 +198,7 @@ function EditPopup({ idea, onClose }) {
                   type="button"
                   onClick={() => handleTag("Creativity")}
                   className={`${
-                    tags.includes("Creativity") ? "bg-teal-100" : "bg-gray-100"
+                    tags.includes("Creativity") ? "bg-blue-100" : "bg-gray-100"
                   } flex gap-[4.9px] justify-center items-center px-8 py-2 rounded-2xl`}
                 >
                   <PencilSquareIcon className="size-4 stroke-[1.6px] text-teal-600" />
@@ -181,9 +210,7 @@ function EditPopup({ idea, onClose }) {
                   type="button"
                   onClick={() => handleTag("Technology")}
                   className={`${
-                    tags.includes("Technology")
-                      ? "bg-indigo-100"
-                      : "bg-gray-100"
+                    tags.includes("Technology") ? "bg-blue-100" : "bg-gray-100"
                   } flex gap-[4.9px] justify-center items-center px-8 py-2 rounded-2xl`}
                 >
                   <CpuChipIcon className="size-4 stroke-[1.6px] text-indigo-600" />
@@ -195,7 +222,7 @@ function EditPopup({ idea, onClose }) {
                   type="button"
                   onClick={() => handleTag("Lifestyle")}
                   className={`${
-                    tags.includes("Lifestyle") ? "bg-cyan-100" : "bg-gray-100"
+                    tags.includes("Lifestyle") ? "bg-blue-100" : "bg-gray-100"
                   } flex gap-[4.9px] justify-center items-center px-8 py-2 rounded-2xl`}
                 >
                   <SparklesIcon className="size-4 stroke-[1.6px] text-cyan-600" />
@@ -207,7 +234,7 @@ function EditPopup({ idea, onClose }) {
                   type="button"
                   onClick={() => handleTag("Other")}
                   className={`${
-                    tags.includes("Other") ? "bg-purple-100" : "bg-gray-100"
+                    tags.includes("Other") ? "bg-blue-100" : "bg-gray-100"
                   } flex gap-[4.9px] justify-center items-center px-8 py-2 rounded-2xl`}
                 >
                   <TagIcon className="size-4 stroke-[1.6px] text-purple-600" />

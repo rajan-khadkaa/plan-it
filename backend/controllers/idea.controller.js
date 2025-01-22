@@ -75,11 +75,18 @@ exports.addIdea = async (req, res) => {
 exports.updateIdea = async (req, res) => {
   try {
     const { id } = req.params;
-    const data = req.body;
+    // console.log("idea id received is: ", id);
+
+    const { title, content, tags } = req.body;
+    // console.log("idea body received are: ", title, content, tags);
     //here new true in the below code returns the newly updated data instead of previous old data.
-    const updateData = await Idea.findOneAndUpdate({ _id: id }, data, {
-      new: true,
-    });
+    const updateData = await Idea.findOneAndUpdate(
+      { _id: id },
+      { title, content, tags },
+      {
+        new: true,
+      }
+    );
     // const updateData = await Idea.findOneAndUpdate({ _id: id }, data);
     if (!updateData)
       return res.status(400).json({ message: "Idea record not found." });

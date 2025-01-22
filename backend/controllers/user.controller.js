@@ -78,6 +78,15 @@ exports.userProtectedRoutes = async (req, res) => {
   }
 };
 
+//local offline test
+// exports.userProtectedRoutes = async (req, res) => {
+//   try {
+//     return res.status(200).json({ success: true });
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// };
+
 exports.logoutUser = async (req, res) => {
   try {
     res.clearCookie("token", {

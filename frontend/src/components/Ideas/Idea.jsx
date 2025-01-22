@@ -10,6 +10,7 @@ import {
   SparklesIcon,
   TagIcon,
   PlusCircleIcon,
+  PhotoIcon,
 } from "@heroicons/react/24/outline";
 import api from "../../api/api";
 
@@ -102,7 +103,7 @@ function Idea() {
               // accept="image/*"
               onChange={(event) => setImage(event.target.files[0])}
             /> */}
-            <div className="flex items-center gap-2 w-full">
+            <div className="flex flex-col items-start gap-2 w-full">
               <input
                 id="file-input"
                 type="file"
@@ -112,16 +113,17 @@ function Idea() {
               />
               <label
                 htmlFor="file-input"
-                className="cursor-pointer min-w-fit bg-blue-100 text-blue-400 px-4 py-2 rounded-md hover:bg-blue-300 hover:text-white transition-all"
+                className="cursor-pointer w-full flex gap-2 justify-center items-center bg-gray-100 text-gray-400 px-4 py-[14px] rounded-md hover:bg-gray-200 hover:text-gray-500 transition-all"
               >
-                Choose Image
+                <PhotoIcon className="size-4" />
+                <span className="text-sm">Add image</span>
               </label>
               {imageName ? (
-                <p className="text-sm text-gray-600 scrollbar-thin overflow-y-auto scroll">
+                <p className="text-sm w-full text-gray-600 scrollbar-thin overflow-y-auto scroll">
                   Selected: {imageName}
                 </p>
               ) : (
-                <p className="text-sm text-gray-400 ">No file chosen</p>
+                <p className="text-sm text-gray-400 "></p>
               )}
             </div>
             <div className="w-full flex flex-col gap-4 mt-4">
