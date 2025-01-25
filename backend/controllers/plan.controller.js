@@ -6,6 +6,7 @@ exports.getAllPlans = async (req, res) => {
     if (!planData)
       return res.status(400).json({ message: "No plan records found." });
     res.status(200).json(planData);
+    // console.log("plan data being sent are: ", planData);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

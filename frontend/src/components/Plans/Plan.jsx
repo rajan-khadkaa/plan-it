@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
-import api from "../api/api";
+import api from "../../api/api";
 
 function Plan() {
   const [date, setDate] = useState("");
@@ -103,7 +103,8 @@ function Plan() {
                       : "hidden"
                   } text-gray-600 text-sm`}
                 >
-                  If you lock it. you can't see it or edit it till that date.
+                  Locking it will hide the plan. You will be mailed on that
+                  picked day.
                 </p>
               </div>
             </div>

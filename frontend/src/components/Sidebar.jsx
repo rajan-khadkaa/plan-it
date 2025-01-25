@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import api from "../api/api.js";
 import {
@@ -8,6 +8,7 @@ import {
   FlagIcon,
   ArrowLeftStartOnRectangleIcon,
 } from "@heroicons/react/24/outline";
+import { BlurContext } from "../App.jsx";
 
 function Sidebar() {
   const navigate = useNavigate();
@@ -15,6 +16,8 @@ function Sidebar() {
   const locationEndpoint = location.pathname.split("/")[1]; //and then split and get the endpoint to set active
   const [isActive, setIsActive] = useState("");
   const [userInfo, setUserInfo] = useState();
+
+  const { blur } = useContext(BlurContext);
 
   useEffect(() => {
     setIsActive(locationEndpoint); //set the active sidebar to whichever endpoint is in the URL
@@ -49,7 +52,11 @@ function Sidebar() {
   };
 
   return (
-    <div className="flex flex-col justify-between items-center w-full h-full font-primaryMedium text-sm">
+    <div
+      className={`flex flex-col justify-between items-center w-full h-full shadow-md shadow-gray-300 px-3 py-2 font-primaryMedium text-sm ${
+        blur && ""
+      }`}
+    >
       <div className="flex flex-col gap-0 w-full">
         <div className="mb-4">
           <h3 className="px-3 py-2 text-lg font-primarySemiBold w-full">

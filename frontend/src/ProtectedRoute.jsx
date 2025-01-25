@@ -47,8 +47,8 @@ function ProtectedRoute({ children }) {
   if (!validUser) return <Navigate to="/" />;
 
   return (
-    <div className="flex w-full h-[100vh] p-0 gap-0 box-border">
-      <div className="border-gray-300 h-full rounded-sm w-[18%] px-3 py-4 shadow-md shadow-gray-300">
+    <div className="flex w-full h-full p-0 gap-0 box-border">
+      <div className="boder-2 border-gray-300 h-full rounded-sm w-[18%]">
         <Sidebar />
       </div>
       <div className="h-full flex flex-1 py-4 px-6">{children}</div>

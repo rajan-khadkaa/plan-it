@@ -12,6 +12,7 @@ import {
   PlusCircleIcon,
   CheckCircleIcon,
   BookmarkIcon,
+  XCircleIcon,
 } from "@heroicons/react/24/outline";
 import api from "../../api/api.js";
 import { toast } from "react-toastify";
@@ -55,7 +56,7 @@ function EditPopup({ idea, onClose }) {
       )
       .catch((error) => {
         console.log(error);
-        toast.error("SOmething went wrong. Try again.");
+        toast.error("Something went wrong. Try again.");
       });
   };
   //   const handleReset = (event) => {
@@ -83,16 +84,24 @@ function EditPopup({ idea, onClose }) {
   return (
     // <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
     <div
-      //   onClick={onClose}
-      className="flex justify-center items-center w-full h-full "
+      onClick={onClose}
+      className="flex fixed inset-0 bg-black/40 backdrop-blur-[2px] justify-center items-center w-full h-full"
     >
       <div
-        // onClick={(event) => event.stopPropagation()}
-        className="border-[1.8px] border-gray-200 flex flex-col justify-start h-[94%] px-6 py-4 rounded-2xl w-[65%]"
+        onClick={(event) => event.stopPropagation()}
+        className="border-[1.8px] border-gray-200 bg-white flex flex-col justify-start px-6 py-6 rounded-2xl w-[50%]"
       >
-        <h3 className="text-sm text-left font-primaryMedium text-gray-500 ml-1 mb-3">
-          Edit your ideas.
-        </h3>
+        <div className="w-full flex justify-between items-start mb-2">
+          <h3 className="text-sm text-left font-primaryMedium text-gray-500 ml-1 mb-3">
+            Edit your ideas.
+          </h3>
+          <button
+            onClick={onClose}
+            className="w-fit p-0 rounded-full text-gray-400 hover:text-red-600 translate-x-2 -translate-y-2"
+          >
+            <XCircleIcon className="size-7" />
+          </button>
+        </div>
         <div className="w-full">
           <form
             onSubmit={handleSubmit}

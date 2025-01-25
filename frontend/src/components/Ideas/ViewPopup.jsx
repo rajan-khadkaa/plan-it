@@ -1,21 +1,61 @@
+import { MinusCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import React from "react";
 
 function ViewPopup({ idea, onClose }) {
   if (!idea) return null;
+  // console.log("ideas info are: ", idea);
 
   return (
-    <div className="flex justify-center items-center">
-      <div className="bg-white p-6 rounded-md w-1/3">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">View Idea</h3>
-        <p className="text-gray-600 mb-2">Title: {idea.title}</p>
-        <p className="text-gray-600 mb-2">Tags: {idea.tags.join(", ")}</p>
-        <p className="text-gray-600 mb-2">Content: {idea.content}</p>
+    <div
+      onClick={onClose}
+      className="flex inset-0 fixed bg-black/40 backdrop-blur-[2px] justify-center items-center w-full h-full"
+    >
+      <div
+        onClick={(event) => event.stopPropagation()}
+        className="border-[1.8px] border-gray-200 bg-white flex relative flex-col justify-start p-4 rounded-md min-w-[40%] max-w-[60%]"
+      >
         <button
           onClick={onClose}
-          className="mt-4 px-4 py-2 bg-gray-700 text-white rounded-md"
+          className="w-fit p-0 rounded-full text-gray-400 hover:text-red-600 absolute top-3 right-3"
         >
-          Close
+          <XCircleIcon className="size-7" />
         </button>
+        <div className="w-full flex gap-4 mr-6">
+          {idea.image && (
+            <div className="w-[200px] h-[200px]">
+              <img
+                className="w-full h-full object-cover"
+                src={idea.image}
+                alt="image"
+              />
+            </div>
+          )}
+          <div className="flex flex-col gap-3">
+            <p className="text-gray-600 font-primarySemiBold">{idea.title}</p>
+            {idea.tags && idea.tags.length > 0 ? (
+              <ul className="flex gap-1 justify-start items-center">
+                {idea.tags.map((item) => (
+                  <li
+                    className="py-[6px] px-3 rounded-md bg-blue-100 text-gray-600 font-primaryMedium text-xs"
+                    key={item}
+                  >
+                    {/* <p className="text-gray-600">{item}</p> */}
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div className="text-gray-400 text-sm flex justify-start items-center gap-1">
+                <MinusCircleIcon className="size-4" />
+                No tags
+              </div>
+            )}
+
+            <p className="text-gray-500 max-w-[400px] mt-2 text-sm">
+              {idea.content}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
