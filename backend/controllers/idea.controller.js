@@ -1,6 +1,6 @@
 const express = require("express");
 const Idea = require("../models/idea.model.js");
-const { uploadOnCLoudinary } = require("../utils/cloudinary.js");
+const { uploadOnCLoudinary, cloudinary } = require("../utils/cloudinary.js");
 const fs = require("fs");
 
 exports.getAllIdeas = async (req, res) => {
@@ -98,24 +98,24 @@ exports.deleteIdea = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const checkImg = await Idea.findOne({ _id: id });
-    if (!checkImg)
-      return res.status(404).json({ message: "Idea record not found." });
+    // const checkImg = await Idea.findOne({ _id: id });
+    // if (!checkImg)
+    //   return res.status(404).json({ message: "Idea record not found." });
 
-    if (checkImg.image) {
-    }
+    // if (checkImg.image) {
+    // }
 
     //LOOK AT THIS TO DELETE THE IMAGE FROM CLOUDINARY
-    // const idea = await Idea.findById(id);
-    // if (!idea) {
-    //   return res.status(404).json({ message: "Idea not found." });
-    // }
+    const idea = await Idea.findById(id);
+    if (!idea) {
+      return res.status(404).json({ message: "Idea not found." });
+    }
 
-    // // Delete the image from Cloudinary
-    // if (idea.image) {
-    //   const publicId = idea.image.split("/").pop().split(".")[0];
-    //   await cloudinary.uploader.destroy(publicId);
-    // }
+    // Delete the image from Cloudinary
+    if (idea.image) {
+      const publicId = idea.image.split("/").pop().split(".")[0];
+      await cloudinary.uploader.destroy(publicId);
+    }
 
     // // Delete the idea document from the database
     // await Idea.findByIdAndDelete(id);

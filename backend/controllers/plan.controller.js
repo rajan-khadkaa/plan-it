@@ -2,7 +2,7 @@ const Plan = require("../models/plan.model.js");
 
 exports.getAllPlans = async (req, res) => {
   try {
-    const planData = await Plan.find();
+    const planData = await Plan.find().sort({ date: -1 });
     if (!planData)
       return res.status(400).json({ message: "No plan records found." });
     res.status(200).json(planData);
@@ -29,6 +29,10 @@ exports.addPlan = async (req, res) => {
     const planData = req.body;
     const { uid } = req.user;
     const allData = { ...planData, uid: uid };
+    console.log("data about to be inserted: ", allData);
+    if (allData.lock) {
+      console.log("lock is true");
+    }
     const insertPlan = await Plan.create(allData);
     console.log("all plan data: ", insertPlan);
     if (!insertPlan)
