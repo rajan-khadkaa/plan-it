@@ -60,13 +60,14 @@ function Milestone() {
           planPopup && "blur-sm bg-gray-50 opacity-95"
         }`}
       >
-        <div className="flex flex-col items-start h-fit gap-1 box-border">
+        <div className="flex flex-col items-start h-fit gap-1 box-border w-full">
           <h3 className="text-sm text-gray-400 font-primaryMedium">
             Upcoming Plans
           </h3>
           <hr className="border-[1px] border-gray-100 w-full mb-2" />
           <div className="w-full h-auto box-border">
             <ul className="flex-1 h-fit grid py-1 grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))] gap-2">
+              {/* <ul className="flex w-full flex-wrap gap-2 p-1 border-2 border-green-500"> */}
               {firstFourPlans &&
                 firstFourPlans.map((item) => (
                   <li
@@ -77,6 +78,14 @@ function Milestone() {
                     key={item._id}
                     className="p-4 bg-none cursor-pointer border-[1.8px] border-gray-200 rounded-md h-fit hover:shadow-sm hover:bg-gray-50 hover:border-gray-200 hover:border- transition-all duration-150"
                   >
+                    {/* // <li
+                  //   key={item._id}
+                  //   className="md:max-w-[32.5%] w-full p-4 bg-none cursor-pointer border-[1.8px] border-gray-200 rounded-md h-fit hover:shadow-sm hover:scale-[1.01] hover:bg-gray-50 hover:border-gray-200 hover:border- transition-all duration-150"
+                  //   onClick={(event) => {
+                  //     event.stopPropagation();
+                  //     handleView(item);
+                  //   }}
+                  // > */}
                     <div className="w-full flex flex-col items-start justify-between gap-5">
                       <div className="w-full flex items-center justify-between">
                         <h3 className="text-gray-600 text-sm font-primarySemiBold">
@@ -127,7 +136,8 @@ function Milestone() {
           <hr className="border-[1px] border-gray-100 w-full mb-3" />
           <div className="w-full  box-border ">
             <ul className="flex-1 grid grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))] gap-2 px-1 h-[52vh] overflow-y-auto scrollbar-thin">
-              {remainingPlans &&
+              {/* <ul className="flex w-full flex-wrap gap-2 p-1 border-2 border-green-500"> */}
+              {remainingPlans.length > 1 ? (
                 remainingPlans
                   .filter((item) =>
                     search === ""
@@ -143,6 +153,14 @@ function Milestone() {
                       key={item._id}
                       className="p-4 bg-none cursor-pointer border-[1.8px] border-gray-200 rounded-md h-fit hover:shadow-sm hover:bg-gray-50 hover:border-gray-200 hover:border- transition-all duration-150"
                     >
+                      {/* // <li
+                    //   key={item._id}
+                    //   className="md:max-w-[32.5%] w-full p-4 bg-none cursor-pointer border-[1.8px] border-gray-200 rounded-md h-fit hover:shadow-sm hover:scale-[1.01] hover:bg-gray-50 hover:border-gray-200 hover:border- transition-all duration-150"
+                    //   onClick={(event) => {
+                    //     event.stopPropagation();
+                    //     handleView(item);
+                    //   }}
+                    // > */}
                       <div className="w-full flex flex-col items-start justify-between gap-5">
                         <div className="w-full flex items-center justify-between">
                           <h3 className="text-gray-600 text-sm font-primarySemiBold">
@@ -172,7 +190,10 @@ function Milestone() {
                         </div>
                       </div>
                     </li>
-                  ))}
+                  ))
+              ) : (
+                <p>No plans found</p>
+              )}
             </ul>
           </div>
         </div>

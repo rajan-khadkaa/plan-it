@@ -58,11 +58,12 @@ function Sidebar() {
       }`}
     >
       <div className="flex flex-col gap-0 w-full">
-        <div className="mb-4">
-          <h3 className="px-3 py-2 text-lg font-primarySemiBold w-full">
+        <div className="mb-7 mt-3 w-[100px]">
+          {/* <h3 className="px-3 py-2 text-lg font-primarySemiBold w-full">
             <span className="text-primaryBrandOptColor">Plan-</span>
             <span className="text-primaryBrandOptColor">It</span>
-          </h3>
+          </h3> */}
+          <img src="/logo/name&logo.svg" alt="" />
         </div>
         <Link
           to="/idea"

@@ -63,9 +63,18 @@ function Archieve() {
     // Other: "purple",
   };
 
-  function handleDelete(id) {
+  async function handleDelete(id) {
     const askUser = confirm("Are you sure you want to delete this idea?");
-    if (askUser) console.log("idea that will be deleted: ", id);
+    if (askUser) {
+      console.log("idea that will be deleted: ", id);
+      await api
+        .delete(`/idea/${id}`)
+        .then((res) => {
+          console.log("response from backend: ", res.data.message);
+          console.log("Idea deleted succesfully");
+        })
+        .catch((error) => console.log("Error: ", error));
+    }
   }
 
   function handleEdit(idea) {
@@ -205,7 +214,7 @@ function Archieve() {
           </div>
           <hr className="border-[1px] border-gray-100 w-full mb-3" />
           <div className="w-full  box-border ">
-            <ul className="flex-1 grid grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))] gap-2 px-2 py-1 h-[52vh] overflow-y-auto scrollbar-thin">
+            <ul className="flex-1 grid grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))] gap-2 p-1 h-[52vh] overflow-y-auto scrollbar-thin">
               {remainingIdeas &&
                 remainingIdeas
                   .filter((item) =>
