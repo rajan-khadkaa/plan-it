@@ -7,6 +7,7 @@ import Plan from "./components/Plans/Plan.jsx";
 import ProtectedRoute from "./ProtectedRoute.jsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { createContext, useState } from "react";
+import Start from "./components/Start.jsx";
 
 export const BlurContext = createContext();
 
@@ -19,7 +20,8 @@ function App() {
         <BlurContext.Provider value={{ blur, setBlur }}>
           <Router>
             <Routes>
-              <Route path="/" element={<Login />} />
+              <Route path="/" element={<Start />} />
+              <Route path="/login" element={<Login />} />
               <Route
                 path="/idea"
                 element={

@@ -45,7 +45,21 @@ function Milestone() {
     setSinglePlanData(plan);
     setPlanPopup(true);
   };
-  const handleDelete = () => {};
+
+  async function handleDelete(id) {
+    const askUser = confirm("Are you sure you want to delete this plan?");
+    if (askUser) {
+      // console.log("idea that will be deleted: ", id);
+      await api
+        .delete(`/plan/${id}`)
+        .then((res) => {
+          // console.log("response from backend: ", res.data.message);
+          console.log("Plan deleted succesfully");
+          getPlanData();
+        })
+        .catch((error) => console.log("Error: ", error));
+    }
+  }
 
   const closeModal = () => {
     setBlur(false);

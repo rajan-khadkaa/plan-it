@@ -66,12 +66,13 @@ function Archieve() {
   async function handleDelete(id) {
     const askUser = confirm("Are you sure you want to delete this idea?");
     if (askUser) {
-      console.log("idea that will be deleted: ", id);
+      // console.log("idea that will be deleted: ", id);
       await api
         .delete(`/idea/${id}`)
         .then((res) => {
-          console.log("response from backend: ", res.data.message);
+          // console.log("response from backend: ", res.data.message);
           console.log("Idea deleted succesfully");
+          getIdeas();
         })
         .catch((error) => console.log("Error: ", error));
     }

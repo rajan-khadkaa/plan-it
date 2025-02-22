@@ -14,7 +14,7 @@ function Plan() {
     if (!title.trim() || !message.trim() || !date)
       return toast.error("Please fill all fields.");
     const utcDate = new Date(date).toISOString();
-    console.log("changed date to ISO/UTC: ", utcDate);
+    // console.log("changed date to ISO/UTC: ", utcDate);
     const allData = {
       title: title,
       message: message,

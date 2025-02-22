@@ -45,7 +45,7 @@ function Sidebar() {
         .post("/user/logout", {})
         .then((res) => {
           console.log(res.data.message);
-          navigate("/");
+          navigate("/login");
         })
         .catch((error) => console.log(error));
     }
