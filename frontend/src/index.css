@@ -168,3 +168,31 @@ body {
   /* background-color: #fff; */
   background: linear-gradient(45deg, #38bdf8, #a855f7, #e34635);
 }
+
+.cardContainer {
+  opacity: 0;
+  transform: translateX(100px);
+  transition: all 0.6s ease-in-out;
+}
+.numContainer {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: all 0.6s ease-in-out;
+}
+
+.lineContainer {
+  opacity: 0;
+  width: 0px;
+  transition: all 0.6s ease-in-out;
+}
+
+.cardContainer.show,
+.numContainer.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.lineContainer.show {
+  opacity: 1;
+  width: 100%;
+}
