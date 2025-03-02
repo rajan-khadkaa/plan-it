@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   BeakerIcon,
@@ -8,6 +8,7 @@ import {
   PresentationChartLineIcon,
   TrophyIcon,
 } from "@heroicons/react/24/outline";
+import VanillaTilt from "vanilla-tilt";
 
 function Start() {
   const navigate = useNavigate();
@@ -38,6 +39,43 @@ function Start() {
     // return () => observer.disconnect(); //if animation is needed only for first render
   }, []);
 
+  const cardRef = useRef([]);
+
+  useEffect(() => {
+    cardRef.current.forEach((card) => {
+      VanillaTilt.init(card, {
+        max: 9,
+        scale: 1.01,
+        glare: true,
+        "max-glare": 0.3,
+      });
+    });
+    return () => {
+      cardRef.current.forEach((card) => card?.vanillaTilt?.destroy());
+    };
+  });
+
+  const cardContents = [
+    {
+      suppText: "Capture. Organize. Grow.",
+      headText: "Ideas",
+      descText:
+        "Save and sort ideas easily, so you can turn them into goals anytime.",
+    },
+    {
+      suppText: "Plan Smart, Achieve More.",
+      headText: "Planning",
+      descText:
+        "Set goals and deadlines in a simple system that keeps you focused.",
+    },
+    {
+      suppText: "Track Progress, Stay Motivated.",
+      headText: "Milestones",
+      descText:
+        "See past wins, track progress, and stay motivated with a clear timeline.",
+    },
+  ];
+
   return (
     <div className="pt-5 min-h-screen overflow-hidden w-full bg-primaryBrandColor flex flex-col gap-32 relative box-border m-0">
       {/* <div className="md:px-40 px-8 pt-5 min-h-screen overflow-hidden w-full bg-white flex flex-col gap-32 relative box-border m-0"> */}
@@ -48,7 +86,7 @@ function Start() {
       <div className="absolute top-0 -right-[400px] sm:-right-[200px] w-[900px] h-[100px] bg-white/10 -rotate-45 blur-3xl rounded-full"></div>
 
       <div className="flex flex-col gap-32 md:px-40 px-8">
-        <nav id="home" className="flex justify-between">
+        <nav id="home" className="flex justify-between sticky top-2">
           <div className="flex gap-2 items-center">
             <img
               className="w-[30px] "
@@ -64,7 +102,7 @@ function Start() {
             <span>Get Started</span>
           </button>
         </nav>
-        <div className="flex flex-col justify-center items-center">
+        <section className="flex flex-col justify-center items-center">
           {/* <h1 className="text-5xl text-white text-center font-primaryBold leading-tight bg-gradient-to-r from-sky-500 via-purple-500 to-red-600 bg-clip-text text-transparent"> */}
           <h1 className="text-5xl w-[95%] sm:w-[90%] lg:w-[75%] text-white text-center font-primaryBold leading-tight">
             Master Your Goals With Productivity System That Works
@@ -77,8 +115,8 @@ function Start() {
           <button onClick={() => navigate("/login")} className="btnHeroStarted">
             <span>Get Started</span>
           </button>
-        </div>
-        <div className="flex flex-col justify-center items-center">
+        </section>
+        <section className="flex flex-col justify-center items-center">
           <span className="dotIcon relative flex items-center bg-gray-400 text-gray-50 rounded-full px-6 py-2 bg-opacity-10 text-[10px] font-primaryMedium tracking-wide">
             FEATURES
           </span>
@@ -86,64 +124,40 @@ function Start() {
             Why Use Plan-It?
           </h3>
           <div className="w-full flex gap-3 flex-wrap mt-7">
-            <div className="rounded-xl bg-[#1a1b22] border-[1.5px] border-gray-500/10 min-w-[300px] flex-1 px-5 py-5">
-              <p className="text-sm text-gray-400 font-primarySemiBold">
-                Capture. Organize. Grow.
-              </p>
-              <h5 className="mt-1 text-3xl w-fit font-primarySemiBold bg-gradient-to-r from-sky-500 via-purple-500 to-red-600 bg-clip-text text-transparent">
-                Ideas
-              </h5>
-              <div className="bg-[#23242d] mt-6 px-3 py-3 rounded-lg">
-                <p className="text-sm text-gray-400">
-                  Save and sort ideas easily, so you can revisit and turn them
-                  into goals anytime.
+            {cardContents.map((content, index) => (
+              <div
+                key={index}
+                ref={(elem) => (cardRef.current[index] = elem)}
+                className="rounded-xl cursor-default bg-[#1a1b22] border-[1.5px] border-gray-500/10 min-w-[300px] flex-1 px-5 py-5"
+              >
+                <p className="text-sm text-gray-400 font-primarySemiBold">
+                  {content.suppText}
                 </p>
+                <h5 className="mt-1 text-3xl w-fit font-primarySemiBold bg-gradient-to-r from-sky-500 via-purple-500 to-red-600 bg-clip-text text-transparent">
+                  {content.headText}
+                </h5>
+                <div className="bg-[#23242d] mt-6 px-3 py-3 rounded-lg">
+                  <p className="text-sm text-gray-400">{content.descText}</p>
+                </div>
               </div>
-            </div>
-            <div className="rounded-xl bg-[#1a1b22] border-[1.5px] border-gray-500/10 min-w-[300px] flex-1 px-5 py-5">
-              <p className="text-sm text-gray-400 font-primarySemiBold">
-                Plan Smart, Achieve More.
-              </p>
-              <h5 className="mt-1 text-3xl w-fit font-primarySemiBold bg-gradient-to-r from-sky-500 via-purple-500 to-red-600 bg-clip-text text-transparent">
-                Planning
-              </h5>
-              <div className="bg-[#23242d] mt-6 px-3 py-3 rounded-lg">
-                <p className="text-sm text-gray-400">
-                  Set goals, deadlines, and steps in a simple system that keeps
-                  you focused.
-                </p>
-              </div>
-            </div>
-            <div className="rounded-xl bg-[#1a1b22] border-[1.5px] border-gray-500/10 min-w-[300px] flex-1 px-5 py-5">
-              <p className="text-sm text-gray-400 font-primarySemiBold">
-                Track Progress, Stay Motivated.
-              </p>
-              <h5 className="mt-1 text-3xl w-fit font-primarySemiBold bg-gradient-to-r from-sky-500 via-purple-500 to-red-600 bg-clip-text text-transparent">
-                Milestones
-              </h5>
-              <div className="bg-[#23242d] mt-6 px-3 py-3 rounded-lg">
-                <p className="text-sm text-gray-400">
-                  See past wins, track progress, and stay motivated with a clear
-                  timeline.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
-        </div>
-        <div className="flex flex-col justify-center items-center mb-20">
+        </section>
+        <section className="flex flex-col justify-center items-center">
           <span className="dotIcon relative flex items-center bg-gray-400 text-gray-50 rounded-full px-6 py-2 bg-opacity-10 text-[10px] font-primaryMedium tracking-wide">
             WORKFLOW
           </span>
           <h3 className="text-4xl w-[95%] sm:w-[90%] lg:w-[75%] text-gray-200 text-center font-primaryBold leading-tight mt-5">
             How It Works
           </h3>
-          <div className="flex flex-col gap-3 items-start w-full mt-12 px-20">
-            <div className="flex gap-5 items-center w-full">
-              <span className="numContainer p-6 size-14 flex items-center justify-center rounded-full bg-[#1a1b22] text-xl font-primarySemiBold text-white">
+          <div className="w-[95%] sm:w-[90%] lg:w-[75%] flex flex-col gap-3 items-start mt-12">
+            {/* <div className="flex flex-row border-2  gap-5 items-center w-full "> */}
+            <div className="flex flex-col sm:flex sm:flex-row  gap-5 sm:items-center w-full ">
+              <span className="numContainer hidden p-6 size-14 sm:flex items-center justify-center rounded-full bg-[#1a1b22] text-xl font-primarySemiBold text-white">
                 1
               </span>
-              <hr className="lineContainer flex flex-1 border-[1px] border-gray-500/15" />
-              <div className="cardContainer relative overflow-hidden w-[300px] bg-[#1a1b22] border-[1.5px] border-gray-500/10 rounded-xl p-6">
+              <hr className="lineContainer hidden sm:flex sm:flex-1 border-[1px] border-gray-500/15" />
+              <div className="cardContainer relative overflow-hidden w-full sm:w-[300px] bg-[#1a1b22] border-[1.5px] border-gray-500/10 rounded-xl p-6">
                 <div className="absolute top-0 right-[50px] w-[100px] h-[10px] bg-white/30 -rotate-45 blur-xl rounded-full"></div>
                 <div className="absolute top-0 -right-[150px] w-[300px] h-[10px] bg-white/30 -rotate-45 blur-xl rounded-full"></div>
                 <p className="bg-[#23242d] rounded-full size-fit flex items-center justify-center">
@@ -152,7 +166,7 @@ function Start() {
                     <LightBulbIcon className="size-6 text-gray-400" />
                   </span>
                 </p>
-                <h5 className="text-3xl font-primarySemiBold text-gray-200 mt-4">
+                <h5 className="text-[22px] font-primarySemiBold text-gray-200 mt-4">
                   Add Ideas
                 </h5>
                 <p className="text-gray-400 text-sm mt-2">
@@ -161,12 +175,15 @@ function Start() {
                 </p>
               </div>
             </div>
-            <div className="flex gap-5 items-center w-full">
-              <span className="numContainer p-6 size-14 flex items-center justify-center rounded-full bg-[#1a1b22] text-xl font-primarySemiBold text-white">
+            {/* <div className="flex gap-5 items-center w-full"> */}
+            <div className="flex flex-col sm:flex sm:flex-row  gap-5 sm:items-center w-full ">
+              <span className="numContainer hidden p-6 size-14 sm:flex items-center justify-center rounded-full bg-[#1a1b22] text-xl font-primarySemiBold text-white">
                 2
               </span>
-              <hr className="lineContainer flex flex-1 border-[1px] border-gray-500/15" />
-              <div className="cardContainer relative overflow-hidden w-[300px] bg-[#1a1b22] border-[1.5px] border-gray-500/10 rounded-xl p-6">
+              {/* <hr className="lineContainer flex flex-1 border-[1px] border-gray-500/15" /> */}
+              <hr className="lineContainer hidden sm:flex sm:flex-1 border-[1px] border-gray-500/15" />
+              {/* <div className="cardContainer relative overflow-hidden w-[300px] bg-[#1a1b22] border-[1.5px] border-gray-500/10 rounded-xl p-6"> */}
+              <div className="cardContainer relative overflow-hidden w-full sm:w-[300px] bg-[#1a1b22] border-[1.5px] border-gray-500/10 rounded-xl p-6">
                 <div className="absolute top-0 right-[50px] w-[100px] h-[10px] bg-white/30 -rotate-45 blur-xl rounded-full"></div>
                 <div className="absolute top-0 -right-[150px] w-[300px] h-[10px] bg-white/30 -rotate-45 blur-xl rounded-full"></div>
                 <p className="bg-[#23242d] rounded-full size-fit flex items-center justify-center">
@@ -183,12 +200,15 @@ function Start() {
                 </p>
               </div>
             </div>
-            <div className="flex gap-5 items-center w-full">
-              <span className="numContainer p-6 size-14 flex items-center justify-center rounded-full bg-[#1a1b22] text-xl font-primarySemiBold text-white">
+            {/* <div className="flex gap-5 items-center w-full"> */}
+            <div className="flex flex-col sm:flex sm:flex-row  gap-5 sm:items-center w-full ">
+              <span className="numContainer hidden p-6 size-14 sm:flex items-center justify-center rounded-full bg-[#1a1b22] text-xl font-primarySemiBold text-white">
                 3
               </span>
-              <hr className="lineContainer flex flex-1 border-[1px] border-gray-500/15" />
-              <div className="cardContainer relative overflow-hidden w-[300px] bg-[#1a1b22] border-[1.5px] border-gray-500/10 rounded-xl p-6">
+              {/* <hr className="lineContainer flex flex-1 border-[1px] border-gray-500/15" /> */}
+              <hr className="lineContainer hidden sm:flex sm:flex-1 border-[1px] border-gray-500/15" />
+              {/* <div className="cardContainer relative overflow-hidden w-[300px] bg-[#1a1b22] border-[1.5px] border-gray-500/10 rounded-xl p-6"> */}
+              <div className="cardContainer relative overflow-hidden w-full sm:w-[300px] bg-[#1a1b22] border-[1.5px] border-gray-500/10 rounded-xl p-6">
                 <div className="absolute top-0 right-[50px] w-[100px] h-[10px] bg-white/30 -rotate-45 blur-xl rounded-full"></div>
                 <div className="absolute top-0 -right-[150px] w-[300px] h-[10px] bg-white/30 -rotate-45 blur-xl rounded-full"></div>
                 <p className="bg-[#23242d] rounded-full size-fit flex items-center justify-center">
@@ -206,74 +226,82 @@ function Start() {
               </div>
             </div>
           </div>
-        </div>
+        </section>
+        <section className="flex flex-col justify-center items-center text-center">
+          <span className="dotIcon relative flex items-center bg-gray-400 text-gray-50 rounded-full px-6 py-2 bg-opacity-10 text-[10px] font-primaryMedium tracking-wide">
+            LAUNCH
+          </span>
+          <h3 className="text-4xl w-[95%] sm:w-[90%] lg:w-[75%] text-gray-200 text-center font-primaryBold leading-tight mt-5">
+            Ready to Turn Your Ideas into Reality?
+          </h3>
+          <p className="text-gray-400 text-sm sm:text-base mt-4 w-[90%] sm:w-[60%]">
+            Organize your thoughts, plan your future, and accomplish more with
+            Plan-It. Start your journey today!
+          </p>
+
+          <button
+            onClick={() => navigate("/login")}
+            className="btnHeroStarted mt-6"
+          >
+            <span>Get Started</span>
+          </button>
+        </section>
       </div>
       <footer
         id="footer"
-        className="flex justify-between py-10 md:px-40 px-8 bg-[#1a1b22]"
+        className="flex  flex-col sm:flex-row sm:justify-center bg-[#1a1b22]"
       >
-        <div className="flex flex-col gap-8">
-          <div className="flex gap-2 items-center">
-            <img
-              className="w-[30px] "
-              src="/logo/icon.svg"
-              alt="plan-it logo"
-            />
-            <p className="text-white font-primaryMedium text-lg">Plan-It</p>
+        <div className="w-[95%] sm:w-[90%] lg:w-[75%] flex  flex-col gap-6 sm:gap-6 sm:flex-row justify-between py-10  px-8">
+          <div className="flex flex-col gap-8">
+            <div className="flex gap-2 items-center">
+              <img
+                className="w-[30px] "
+                src="/logo/icon.svg"
+                alt="plan-it logo"
+              />
+              <p className="text-white font-primaryMedium text-lg">Plan-It</p>
+            </div>
+            <p className="text-gray-100 text-sm">
+              © 2025 Plan-it. All rights reserved.
+            </p>
           </div>
-          <p className="text-gray-100">© 2025 Plan-it. All rights reserved.</p>
-        </div>
-        <div className="flex flex-wrap justify-between w-[40%]">
-          <div className="flex flex-col gap-1">
-            <a
-              href="#footer"
-              className="text-gray-500 text-base font-primaryMedium"
-            >
-              Company
-            </a>
-            <a href="#footer" className="text-gray-300 text-base">
-              Update
-            </a>
-            <a href="#footer" className="text-gray-300 text-base">
-              Status
-            </a>
-            <a href="#footer" className="text-gray-300 text-base">
-              About
-            </a>
-          </div>
-          <div className="flex flex-col gap-1">
-            <a
-              href="#footer"
-              className="text-gray-500 text-base font-primaryMedium"
-            >
-              Legal
-            </a>
-            <a href="#footer" className="text-gray-300 text-base">
-              Privacy Policy
-            </a>
-            <a href="#footer" className="text-gray-300 text-base">
-              Terms of Service
-            </a>
-            <a href="#footer" className="text-gray-300 text-base">
-              About
-            </a>
-          </div>
-          <div className="flex flex-col gap-1">
-            <a
-              href="#footer"
-              className="text-gray-500 text-base font-primaryMedium"
-            >
-              Social
-            </a>
-            <a href="#footer" className="text-gray-300 text-base">
-              Discord
-            </a>
-            <a href="#footer" className="text-gray-300 text-base">
-              Instagram
-            </a>
-            <a href="#footer" className="text-gray-300 text-base">
-              Facebook
-            </a>
+          <div className="flex flex-wrap justify-between text-sm sm:w-[80%] lg:max-w-[60%]">
+            <div className="flex flex-col gap-1">
+              <p className="text-gray-500 font-primaryMedium">Company</p>
+              <a href="#footer" className="text-gray-300">
+                Update
+              </a>
+              <a href="#footer" className="text-gray-300">
+                Status
+              </a>
+              <a href="#footer" className="text-gray-300">
+                About
+              </a>
+            </div>
+            <div className="flex flex-col gap-1">
+              <p className="text-gray-500 font-primaryMedium">Legal</p>
+              <a href="#footer" className="text-gray-300">
+                Privacy Policy
+              </a>
+              <a href="#footer" className="text-gray-300">
+                Terms of Service
+              </a>
+              <a href="#footer" className="text-gray-300">
+                About
+              </a>
+            </div>
+            <div className="flex flex-col gap-1">
+              <p className="text-gray-500 font-primaryMedium">Social</p>
+              <a href="#footer" className="text-gray-300">
+                Discord
+              </a>
+              <a href="#footer" className="text-gray-300">
+                Instagram
+              </a>
+              <a href="#footer" className="text-gray-300">
+                Facebook
+              </a>
+            </div>
           </div>
         </div>
       </footer>
