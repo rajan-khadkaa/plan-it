@@ -77,7 +77,7 @@ function Start() {
   ];
 
   return (
-    <div className="pt-5 min-h-screen overflow-hidden w-full bg-primaryBrandColor flex flex-col gap-32 relative box-border m-0">
+    <div className="pt-5 min-h-screen overflow-hidden w-full bg-primaryBrandColor flex flex-col items-center gap-32 relative box-border m-0">
       {/* <div className="md:px-40 px-8 pt-5 min-h-screen overflow-hidden w-full bg-white flex flex-col gap-32 relative box-border m-0"> */}
       {/* Left Spotlight */}
       <div className="absolute top-0 -left-[150px] sm:-left-[50px] w-[400px] h-[100px] bg-white/10 rotate-45 blur-3xl rounded-full"></div>
@@ -85,7 +85,7 @@ function Start() {
       {/* Right Spotlight */}
       <div className="absolute top-0 -right-[400px] sm:-right-[200px] w-[900px] h-[100px] bg-white/10 -rotate-45 blur-3xl rounded-full"></div>
 
-      <div className="flex flex-col gap-32 md:px-40 px-8">
+      <div className="flex flex-col gap-32 w-[90%] md:w-[90%] lg:w-[80%] max-w-[1000px]">
         <nav id="home" className="flex justify-between sticky top-2">
           <div className="flex gap-2 items-center">
             <img
@@ -102,15 +102,15 @@ function Start() {
             <span>Get Started</span>
           </button>
         </nav>
-        <section className="flex flex-col justify-center items-center">
+        <section className="flex w-full flex-col justify-center items-center">
           {/* <h1 className="text-5xl text-white text-center font-primaryBold leading-tight bg-gradient-to-r from-sky-500 via-purple-500 to-red-600 bg-clip-text text-transparent"> */}
-          <h1 className="text-5xl w-[95%] sm:w-[90%] lg:w-[75%] text-white text-center font-primaryBold leading-tight">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl w-full  lg:w-[65%] text-white text-center font-primaryBold leading-tight">
             Master Your Goals With Productivity System That Works
           </h1>
-          <p className="text-lg w-[80%] sm:w-[75%] lg:w-[60%] text-gray-300 mt-4 text-center">
+          <p className="text-lg w-[95%] md:w-[90%] lg:w-[60%] text-gray-300 mt-4 text-center">
             Imagine a place where your ideas are stored, your goals are clear,
-            and your progress is visible. That’s Plan-It—the smarter way to plan
-            and grow.
+            and your progress is visible. That’s Plan-It, the smarter way to
+            plan and grow.
           </p>
           <button onClick={() => navigate("/login")} className="btnHeroStarted">
             <span>Get Started</span>
@@ -120,20 +120,20 @@ function Start() {
           <span className="dotIcon relative flex items-center bg-gray-400 text-gray-50 rounded-full px-6 py-2 bg-opacity-10 text-[10px] font-primaryMedium tracking-wide">
             FEATURES
           </span>
-          <h3 className="text-4xl w-[95%] sm:w-[90%] lg:w-[75%] text-gray-200 text-center font-primaryBold leading-tight mt-5">
+          <h3 className="text-3xl md:text-4xl w-[95%] sm:w-[90%] lg:w-[75%] text-gray-200 text-center font-primaryBold leading-tight mt-5">
             Why Use Plan-It?
           </h3>
-          <div className="w-full flex gap-3 flex-wrap mt-7">
+          <div className="w-full flex justify-center md:justify-start gap-3 flex-wrap mt-7">
             {cardContents.map((content, index) => (
               <div
                 key={index}
                 ref={(elem) => (cardRef.current[index] = elem)}
-                className="rounded-xl cursor-default bg-[#1a1b22] border-[1.5px] border-gray-500/10 min-w-[300px] flex-1 px-5 py-5"
+                className="rounded-xl cursor-default bg-[#1a1b22] border-[1.5px] border-gray-500/10 min-w-full md:min-w-[300px] max-w-[49%] flex-1 px-5 py-5"
               >
                 <p className="text-sm text-gray-400 font-primarySemiBold">
                   {content.suppText}
                 </p>
-                <h5 className="mt-1 text-3xl w-fit font-primarySemiBold bg-gradient-to-r from-sky-500 via-purple-500 to-red-600 bg-clip-text text-transparent">
+                <h5 className="mt-1 text-2xl md:text-3xl w-fit font-primarySemiBold bg-gradient-to-r from-sky-500 via-purple-500 to-red-600 bg-clip-text text-transparent">
                   {content.headText}
                 </h5>
                 <div className="bg-[#23242d] mt-6 px-3 py-3 rounded-lg">
@@ -147,7 +147,7 @@ function Start() {
           <span className="dotIcon relative flex items-center bg-gray-400 text-gray-50 rounded-full px-6 py-2 bg-opacity-10 text-[10px] font-primaryMedium tracking-wide">
             WORKFLOW
           </span>
-          <h3 className="text-4xl w-[95%] sm:w-[90%] lg:w-[75%] text-gray-200 text-center font-primaryBold leading-tight mt-5">
+          <h3 className="text-3xl md:text-4xl w-[95%] sm:w-[90%] lg:w-[75%] text-gray-200 text-center font-primaryBold leading-tight mt-5">
             How It Works
           </h3>
           <div className="w-[95%] sm:w-[90%] lg:w-[75%] flex flex-col gap-3 items-start mt-12">
@@ -231,7 +231,7 @@ function Start() {
           <span className="dotIcon relative flex items-center bg-gray-400 text-gray-50 rounded-full px-6 py-2 bg-opacity-10 text-[10px] font-primaryMedium tracking-wide">
             LAUNCH
           </span>
-          <h3 className="text-4xl w-[95%] sm:w-[90%] lg:w-[75%] text-gray-200 text-center font-primaryBold leading-tight mt-5">
+          <h3 className="text-3xl md:text-4xl w-[95%] sm:w-[90%] lg:w-[75%] text-gray-200 text-center font-primaryBold leading-tight mt-5">
             Ready to Turn Your Ideas into Reality?
           </h3>
           <p className="text-gray-400 text-sm sm:text-base mt-4 w-[90%] sm:w-[60%]">
@@ -249,7 +249,7 @@ function Start() {
       </div>
       <footer
         id="footer"
-        className="flex  flex-col sm:flex-row sm:justify-center bg-[#1a1b22]"
+        className="flex w-full flex-col sm:flex-row sm:justify-center bg-[#1a1b22]"
       >
         <div className="w-[95%] sm:w-[90%] lg:w-[75%] flex  flex-col gap-6 sm:gap-6 sm:flex-row justify-between py-10  px-8">
           <div className="flex flex-col gap-8">

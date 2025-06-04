@@ -108,7 +108,6 @@ function Plan() {
                 </p>
               </div>
             </div>
-            {console.log("checkbox is: ", checked)}
             {/* <div className="w-full flex flex-col gap-4 mt-4 border-2"> */}
             <div className="w-full mt-6 box-border flex flex-col md:flex-row gap-3 justify-start items-center">
               <button

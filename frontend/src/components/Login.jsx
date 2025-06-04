@@ -55,7 +55,14 @@ function Login() {
         })
         .catch((error) => console.log("Could not login. Try again.", error));
     } catch (error) {
-      if (error.code !== "auth/popup-closed-by-user") setError(error.message);
+      if (error.code === "auth/popup-closed-by-user") {
+        setError("Sign in failed. Please try again.");
+      } else {
+        const errorMsg = error.code.split("/")[1] || error.message;
+        setError(`Error: ${errorMsg}`);
+        // setError("Something went wrong. Please try again.");
+        console.log(error.message);
+      }
     } finally {
       setLoading(false);
     }
@@ -90,7 +97,11 @@ function Login() {
         })
         .catch((error) => console.log("Could not login. Try again.", error));
     } catch (error) {
-      setError(error.message);
+      if (error.code === "auth/invalid-credential") {
+        setError("Incorrect email or password.");
+      } else {
+        setError(error.message);
+      }
     } finally {
       setLoading(false);
     }
@@ -134,7 +145,14 @@ function Login() {
         })
         .catch((error) => console.log("Could not login. Try again.", error));
     } catch (error) {
-      setError(error.message);
+      if (error.code === "auth/email-already-in-use") {
+        setError("Email already in use.");
+      } else if (error.code === "auth/weak-password") {
+        const errorMsg = error.message.split("(")[0].slice(9);
+        setError(errorMsg);
+      } else {
+        setError(error.message);
+      }
     } finally {
       setLoading(false);
     }
@@ -152,8 +170,8 @@ function Login() {
       </div> */}
 
       {/* Right Side: Form */}
-      <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-white">
-        <div className="flex w-[60%] flex-col gap-2 px-4">
+      <div className="w-[90%] md:w-[60%] lg:w-[36%] flex flex-col justify-center items-center bg-white">
+        <div className="flex w-[90%] flex-col gap-2 px-4">
           {/* Logo */}
           {/* <img
             className="w-[50px] opacity-90 mb-4"

@@ -46,7 +46,7 @@ function Sidebar({ expanded, setExpanded }) {
       await api
         .post("/user/logout", {})
         .then((res) => {
-          console.log(res.data.message);
+          // console.log(res.data.message);
           navigate("/login");
         })
         .catch((error) => console.log(error));
@@ -87,9 +87,9 @@ function Sidebar({ expanded, setExpanded }) {
         <Link
           to="/idea"
           //   onClick={() => setIsActive("idea")}
-          className={`${
-            isActive === "idea" ? "bg-gray-200" : ""
-          } text-gray-600 px-3 py-2 w-full transition-all duration-150 rounded-sm flex justify-start items-center gap-[8px]`}
+          className={`${isActive === "idea" ? "bg-gray-200" : ""} ${
+            expanded ? "justify-start" : "justify-center"
+          } text-gray-600 px-2 py-2 md:px-3 md:py-2 w-full transition-all duration-150 rounded-sm flex md:justify-start items-center gap-[8px]`}
         >
           <LightBulbIcon
             className={`${
@@ -107,9 +107,9 @@ function Sidebar({ expanded, setExpanded }) {
         <Link
           to="/archive"
           //   onClick={() => setIsActive("archive")}
-          className={`${
-            isActive === "archive" ? "bg-gray-200" : ""
-          } text-gray-600 px-3 py-2 w-full transition-all duration-150 rounded-sm flex justify-start items-center gap-[8px]`}
+          className={`${isActive === "archive" ? "bg-gray-200" : ""} ${
+            expanded ? "justify-start" : "justify-center"
+          } text-gray-600 px-2 py-2 md:px-3 md:py-2  w-full transition-all duration-150 rounded-sm flex md:justify-start items-center gap-[8px]`}
         >
           <ArchiveBoxIcon
             className={`${
@@ -127,9 +127,9 @@ function Sidebar({ expanded, setExpanded }) {
         <Link
           to="/plan"
           //   onClick={() => setIsActive("plan")}
-          className={`${
-            isActive === "plan" ? "bg-gray-200" : ""
-          } text-gray-600 px-3 py-2 w-full transition-all duration-150 rounded-sm flex justify-start items-center gap-[8px]`}
+          className={`${isActive === "plan" ? "bg-gray-200" : ""} ${
+            expanded ? "justify-start" : "justify-center"
+          } text-gray-600 px-2 py-2 md:px-3 md:py-2 w-full transition-all duration-150 rounded-sm flex md:justify-start items-center gap-[8px]`}
         >
           <CalendarIcon
             className={`${
@@ -147,9 +147,9 @@ function Sidebar({ expanded, setExpanded }) {
         <Link
           to="/milestone"
           //   onClick={() => setIsActive("milestone")}
-          className={`${
-            isActive === "milestone" ? "bg-gray-200" : ""
-          } text-gray-600 px-3 py-2 w-full transition-all duration-150 rounded-sm flex justify-start items-center gap-[8px]`}
+          className={`${isActive === "milestone" ? "bg-gray-200" : ""} ${
+            expanded ? "justify-start" : "justify-center"
+          } text-gray-600 px-2 py-2 md:px-3 md:py-2 w-full transition-all duration-150 rounded-sm flex md:justify-start items-center gap-[8px]`}
         >
           <FlagIcon
             className={`${

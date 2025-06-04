@@ -58,6 +58,7 @@ exports.addUser = async (req, res) => {
       secure: true, // Ensures cookies are only sent over HTTPS
       sameSite: "none", // Allows cross-origin cookies
       path: "/",
+      maxAge: 30 * 24 * 60 * 60 * 1000, // Optional: Sets expiry (e.g., 30 days)
     });
     // console.log("Setting cookie: ", token);
 

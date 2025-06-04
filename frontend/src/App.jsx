@@ -15,7 +15,7 @@ function App() {
   const [blur, setBlur] = useState(false);
 
   return (
-    <div className="w-full h-screen overflow-visible box-border">
+    <div className="w-full h-[100dvh] overflow-visible box-border">
       <div className="w-full h-full">
         <BlurContext.Provider value={{ blur, setBlur }}>
           <Router>
