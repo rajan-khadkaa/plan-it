@@ -15,7 +15,7 @@ import { BlurContext } from "../App.jsx";
 
 function Archieve() {
   const [ideas, setIdeas] = useState([]);
-  const [firstFourIdeas, setFirstFourIdeas] = useState([]);
+  const [firstThreeIdeas, setfirstThreeIdeas] = useState([]);
   const [remainingIdeas, setRemainingIdeas] = useState([]);
   const [popupModal, setPopupModal] = useState(null);
   const [sendIdea, setSendIdea] = useState(null);
@@ -44,9 +44,9 @@ function Archieve() {
 
   function separateData(ideas) {
     // console.log("all ideas are", ideas);
-    const firstFour = ideas.slice(0, 3);
-    setFirstFourIdeas(firstFour); //this stores the first four data
-    // console.log("first four:", firstFour);
+    const firstThree = ideas.slice(0, 3);
+    setfirstThreeIdeas(firstThree); //this stores the first four data
+    // console.log("first four:", firstThree);
     const remaining = ideas.slice(3);
     setRemainingIdeas(remaining); //this stores all other data after 4th indexed object data
     // console.log("remaining", remaining);
@@ -101,11 +101,12 @@ function Archieve() {
   return (
     <div className="w-full h-full p-0 m-0">
       <div
-        className={`flex flex-col gap-6 flex-1 box-border transition-all duration-100 ${
+        className={`flex h-full flex-col gap-6 flex-1 box-border transition-all duration-100 ${
           popupModal && ""
         }`}
       >
-        <div className="flex flex-col items-start h-fit gap-1 box-border">
+        {/* UPCOMING IDEAS */}
+        <div className="flex flex-col items-start gap-1 box-border">
           {/* <button
               onClick={() => setPopupModal(true)}
               className="text-sm bg-gray-700 text-white rounded-md"
@@ -116,22 +117,22 @@ function Archieve() {
             Upcoming Ideas
           </h3>
           <hr className="border-[1px] border-gray-100 w-full mb-3" />
-          <div className="w-full h-auto box-border">
-            <ul className="flex-1 h-fit grid py-1 grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))] gap-2">
-              {firstFourIdeas &&
-                firstFourIdeas.map((item) => (
+          <div className="w-full  h-[30vh] md:h-fit overflow-y-auto box-border scrollbar-thin">
+            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 p-1 h-fit">
+              {firstThreeIdeas.length > 0 ? (
+                firstThreeIdeas.map((item) => (
                   <li
                     onClick={() => handleView(item)}
                     key={item._id}
-                    className="p-4 bg-none cursor-pointer border-[1.8px] border-gray-200 rounded-md h-fit hover:shadow-sm hover:scale-[1.01] hover:bg-gray-50 hover:border-gray-200 hover:border- transition-all duration-150"
+                    className="p-4 h-fit cursor-pointer border-[1.8px] border-gray-200 rounded-md hover:shadow-sm hover:scale-[1.01] hover:bg-gray-50 hover:border-gray-200 transition-all duration-150 flex flex-col"
                   >
-                    <div className="w-full flex flex-col items-start gap-5">
-                      <div className="w-full flex flex-col items-start justify-between gap-6">
-                        <div className="w-full flex items-center justify-between">
-                          <h3 className="text-gray-600 text-sm font-primarySemiBold">
+                    <div className="flex flex-col gap-5">
+                      <div className="flex flex-col gap-12">
+                        <div className="flex items-center justify-between">
+                          <h3 className="text-gray-600 text-sm font-primarySemiBold truncate">
                             {item.title}
                           </h3>
-                          <p className="text-xs text-gray-400">
+                          <p className="text-xs text-gray-400  whitespace-nowrap">
                             {item.createdAt.split("T")[0]}
                           </p>
                         </div>
@@ -143,8 +144,8 @@ function Archieve() {
                           Technology
                         </p>
                       </div> */}
-                        <div className="w-full flex gap-2 justify-between items-end">
-                          <div className="w-full flex flex-wrap items-end justify-start gap-1 h-[36px] overflow-y-auto scrollbar-thin">
+                        <div className="w-full flex gap-2 justify-between items-start">
+                          <div className="w-full flex flex-wrap items-start justify-start gap-1 h-10 overflow-y-auto scrollbar-thin">
                             {item.tags.length > 0 ? (
                               item.tags.map((tag) => (
                                 <span
@@ -195,18 +196,25 @@ function Archieve() {
                       </div>
                     </div>
                   </li>
-                ))}
+                ))
+              ) : (
+                <p className="col-span-full text-center mt-4 text-gray-600 font-primaryMedium">
+                  No upcoming ideas.
+                </p>
+              )}
             </ul>
           </div>
         </div>
-        <div className="flex flex-col items-start flex-1 gap-1 box-border">
+
+        {/* ALL IDEAS */}
+        <div className="flex flex-col flex-1 min-h-0 items-start gap-1 box-border">
           {" "}
-          <div className="w-full flex justify-between items-end">
+          <div className="w-full flex justify-between items-center">
             <h3 className="text-sm text-gray-400 font-primaryMedium">
               All ideas
             </h3>
             <input
-              className="px-2 py-[6px] min-w-[200px] text-xs outline-none border-[1.8px] rounded-md border-gray-300 text-gray-600 placeholder:text-xs placeholder:text-gray-400"
+              className="px-2 py-[6px] w-[40vw] md:w-[28vw] lg:w-[20vw] text-xs outline-none border-[1.8px] rounded-md border-gray-300 text-gray-600 placeholder:text-xs placeholder:text-gray-400"
               type="search"
               placeholder="Search here"
               value={search}
@@ -214,9 +222,9 @@ function Archieve() {
             />
           </div>
           <hr className="border-[1px] border-gray-100 w-full mb-3" />
-          <div className="w-full  box-border ">
-            <ul className="flex-1 grid grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))] gap-2 p-1 h-[52vh] overflow-y-auto scrollbar-thin">
-              {remainingIdeas &&
+          <div className="flex-1 w-full min-h-0 overflow-y-auto scrollbar-thin">
+            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 py-1 pl-1 pr-2">
+              {remainingIdeas.length > 0 ? (
                 remainingIdeas
                   .filter((item) =>
                     search.toLowerCase() === ""
@@ -227,20 +235,23 @@ function Archieve() {
                     <li
                       onClick={() => handleView(item)}
                       key={item._id}
-                      className="p-4 bg-none cursor-pointer border-[1.8px] border-gray-200 rounded-md h-fit hover:shadow-sm hover:scale-[1.01] hover:bg-gray-50 hover:border-gray-200 hover:border- transition-all duration-150"
+                      className="p-4 h-fit cursor-pointer border-[1.8px] border-gray-200 rounded-md hover:shadow-sm hover:scale-[1.01] hover:bg-gray-50 hover:border-gray-200 transition-all duration-150 flex flex-col" // Added flex and h-full here
                     >
-                      <div className="w-full flex flex-col items-start gap-5">
-                        <div className="w-full flex flex-col items-start justify-start gap-6">
-                          <div className="w-full flex items-center justify-between">
-                            <h3 className="text-gray-600 text-sm font-primarySemiBold">
+                      <div className="flex flex-col gap-5">
+                        {" "}
+                        <div className="flex flex-col gap-12">
+                          <div className="flex items-center justify-between">
+                            <h3 className="text-gray-600 text-sm font-primarySemiBold truncate">
+                              {" "}
                               {item.title}
                             </h3>
-                            <p className="text-xs text-gray-400">
+                            <p className="text-xs text-gray-400 whitespace-nowrap">
+                              {" "}
                               {item.createdAt.split("T")[0]}
                             </p>
                           </div>
-                          <div className="w-full flex gap-2 justify-between items-end">
-                            <div className="w-full flex flex-wrap items-end justify-start gap-1 h-[36px] overflow-y-auto scrollbar-thin">
+                          <div className="w-full flex gap-2 justify-between items-start">
+                            <div className="w-full flex flex-wrap items-start justify-start gap-1 h-10 overflow-y-auto scrollbar-thin">
                               {item.tags.length > 0 ? (
                                 item.tags.map((tag) => (
                                   <span
@@ -258,7 +269,14 @@ function Archieve() {
                                 </div>
                               )}
                             </div>
-                            <div className="flex justify-end gap-2">
+                            <div className="flex justify-end gap-2 ">
+                              {/* <button
+                            type="button"
+                            onClick={() => handleView(item._id)}
+                            className="size-7 cursor-pointer border-[1px] text-gray-600 border-gray-200 rounded-md hover:bg-gray-600 hover:text-gray-100 p-1"
+                          >
+                            <ArrowsPointingOutIcon />
+                          </button> */}
                               <button
                                 type="button"
                                 onClick={(event) => {
@@ -284,7 +302,23 @@ function Archieve() {
                         </div>
                       </div>
                     </li>
-                  ))}
+                  ))
+              ) : (
+                <div className="col-span-full h-full text-center pt-10">
+                  {" "}
+                  {/* Added col-span-full */}
+                  <h5 className="text-gray-600 font-primaryMedium">
+                    No ideas found.
+                  </h5>
+                  <p className="text-gray-400 text-sm mt-1">
+                    {`${
+                      firstThreeIdeas.length === 0
+                        ? " Please add ideas to see here."
+                        : " Please add more ideas to see here."
+                    }`}
+                  </p>
+                </div>
+              )}
             </ul>
           </div>
         </div>

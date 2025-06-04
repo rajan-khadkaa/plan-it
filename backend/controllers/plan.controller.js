@@ -2,7 +2,8 @@ const Plan = require("../models/plan.model.js");
 
 exports.getAllPlans = async (req, res) => {
   try {
-    const planData = await Plan.find().sort({ date: -1 });
+    const { uid } = req.user;
+    const planData = await Plan.find({ uid }).sort({ date: -1 });
     if (!planData)
       return res.status(400).json({ message: "No plan records found." });
     res.status(200).json(planData);

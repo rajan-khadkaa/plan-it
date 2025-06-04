@@ -20,9 +20,11 @@ function Idea() {
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
   const [imageName, setImageName] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
     if (!title.trim() || tags.length === 0 || !content.trim())
       return toast.error("Please fill all fields.");
     // const allData = { title: title, content: content, tags: tags };
@@ -37,17 +39,22 @@ function Idea() {
     for (let [key, value] of formData.entries()) {
       console.log(` ${key}: ${value} `);
     }
-
-    await api
-      .post("/idea", formData)
-      .then((res) => {
-        console.log(res.data);
-        toast.success("Idea added successfully!");
-        setTags([]);
-        setTitle("");
-        setContent("");
-      })
-      .catch((error) => console.error(error));
+    try {
+      await api
+        .post("/idea", formData)
+        .then((res) => {
+          console.log(res.data);
+          toast.success("Idea added successfully!");
+          setTags([]);
+          setTitle("");
+          setContent("");
+        })
+        .catch((error) => console.error(error));
+    } catch (error) {
+      alert("Error: ", error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleReset = () => {
@@ -75,7 +82,7 @@ function Idea() {
   };
   return (
     <div className="w-full h-full flex justify-center items-center">
-      <div className="w-[70%]">
+      <div className="w-[100%] md:w-[95%] lg:w-[70%]">
         {/* <>{console.log("tags are: ", tags)}</> */}
         {/* <h3>heading</h3> */}
         <div className="w-full">
@@ -86,7 +93,7 @@ function Idea() {
             <textarea
               value={content}
               onChange={(event) => setContent(event.target.value)}
-              className="w-full min-h-[24vh] max-h-[24vh] resize-none overflow-y-auto py-4 px-4 bg-gray-100 rounded-2xl text-gray-800 placeholder-gray-400 outline-none border-2 border-gray-100 focus:border-gray-200 focus:border-2 box-border"
+              className="w-full h-[13vh] md:h-[18vh] lg:h-[24vh] resize-none overflow-y-auto py-4 px-4 bg-gray-100 rounded-2xl text-gray-800 placeholder-gray-400 outline-none border-2 border-gray-100 focus:border-gray-200 focus:border-2 box-border"
               placeholder="What do you have in mind?"
             ></textarea>
             <input
@@ -227,13 +234,20 @@ function Idea() {
                   <p className="text-gray-500">Other</p>
                 </button>
               </div>
-              <div className="w-full mt-6 box-border flex gap-3 justify-start items-center">
+              <div className="w-full mt-6 box-border flex flex-col md:flex-row gap-3 justify-start items-center">
                 <button
-                  className="flex justify-center items-center gap-2 bg-primaryBrandOptColor text-white py-[10px] px-4 w-full rounded-lg"
+                  disabled={loading}
+                  className={`flex justify-center items-center gap-2 ${
+                    loading
+                      ? "bg-zinc-400 text-zinc-600"
+                      : "bg-primaryBrandOptColor text-white"
+                  }  py-[10px] px-4 w-full rounded-lg`}
                   type="submit"
                 >
                   <PlusCircleIcon className="size-5" />
-                  <p className="font-primaryMedium">Add Idea</p>
+                  <p className="font-primaryMedium">
+                    {loading ? "Adding idea..." : "Add Idea"}
+                  </p>
                 </button>
                 <button
                   onClick={handleReset}

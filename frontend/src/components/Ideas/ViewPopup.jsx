@@ -8,11 +8,11 @@ function ViewPopup({ idea, onClose }) {
   return (
     <div
       onClick={onClose}
-      className="flex inset-0 fixed bg-black/40 backdrop-blur-[2px] justify-center items-center w-full h-full"
+      className="flex absolute inset-0 w-full bg-black/40 backdrop-blur-[2px]  justify-center items-center"
     >
       <div
         onClick={(event) => event.stopPropagation()}
-        className="border-[1.8px] border-gray-200 bg-white flex relative flex-col justify-start p-4 rounded-md min-w-[40%] max-w-[60%]"
+        className="border-[1.8px] border-gray-200 bg-white flex relative flex-col justify-start p-4 rounded-md w-[80%] md:w-[80%] lg:w-[60%]"
       >
         <button
           onClick={onClose}
@@ -20,9 +20,9 @@ function ViewPopup({ idea, onClose }) {
         >
           <XCircleIcon className="size-7" />
         </button>
-        <div className="w-full flex gap-4 mr-6">
+        <div className="w-full flex flex-col md:flex-row gap-4 mr-6">
           {idea.image && (
-            <div className="w-[200px] h-[200px]">
+            <div className="h-60 w-full md:size-60 lg:size-80">
               <img
                 className="w-full h-full object-cover"
                 src={idea.image}
@@ -30,7 +30,7 @@ function ViewPopup({ idea, onClose }) {
               />
             </div>
           )}
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-1 flex-col gap-3">
             <p className="text-gray-600 font-primarySemiBold">{idea.title}</p>
             {idea.tags && idea.tags.length > 0 ? (
               <ul className="flex gap-1 justify-start items-center">
@@ -51,9 +51,9 @@ function ViewPopup({ idea, onClose }) {
               </div>
             )}
 
-            <p className="text-gray-500 max-w-[400px] mt-2 text-sm">
-              {idea.content}
-            </p>
+            <div className=" flex-1 min-h-[24vh] md:min-h-0 mt-2 overflow-y-auto">
+              <p className="text-gray-500 text-sm">{idea.content}</p>
+            </div>
           </div>
         </div>
       </div>

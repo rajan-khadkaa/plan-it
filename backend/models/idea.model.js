@@ -12,6 +12,7 @@ const ideaSchema = mongoose.Schema(
     content: { type: String },
     tags: { type: [String] },
     image: { type: String },
+    imgPublicId: { type: String },
   },
   {
     timestamps: true,

@@ -6,6 +6,7 @@ import Sidebar from "./components/Sidebar.jsx";
 function ProtectedRoute({ children }) {
   const [validUser, setValidUser] = useState(null);
   const location = useLocation();
+  const [expandSidebar, setExpandSidebar] = useState(false);
 
   useEffect(() => {
     checkProtectedRoute();
@@ -47,11 +48,17 @@ function ProtectedRoute({ children }) {
   if (!validUser) return <Navigate to="/" />;
 
   return (
-    <div className="flex w-full h-full p-0 gap-0 box-border">
-      <div className="boder-2 border-gray-300 h-full rounded-sm w-[18%]">
-        <Sidebar />
+    <div className="flex relative w-full h-full p-0 gap-0 box-border">
+      <div
+        className={`transition-[width] duration-300 z-10 bg-white h-full absolute left-0 top-0 rounded-sm ${
+          expandSidebar ? "w-[60%]" : "w-[15%]"
+        }  md:w-[24%] lg:w-[18%]`}
+      >
+        <Sidebar expanded={expandSidebar} setExpanded={setExpandSidebar} />
       </div>
-      <div className="h-full flex flex-1 py-4 px-6">{children}</div>
+      <div className="h-[100vh] absolute right-0 w-[85%] md:w-[76%] lg:w-[82%] flex flex-1 py-4 px-6">
+        {children}
+      </div>
     </div>
   );
 }

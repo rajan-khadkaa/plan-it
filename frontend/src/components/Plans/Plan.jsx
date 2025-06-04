@@ -46,7 +46,7 @@ function Plan() {
 
   return (
     <div className="w-full h-full flex justify-center items-center">
-      <div className="w-[70%]">
+      <div className="w-[100%] md:w-[95%] lg:w-[70%]">
         {/* <>{console.log("tags are: ", tags)}</> */}
         {/* <h3>heading</h3> */}
         <div className="w-full">
@@ -57,7 +57,7 @@ function Plan() {
             <textarea
               value={message}
               onChange={(event) => setMessage(event.target.value)}
-              className="w-full min-h-[24vh] max-h-[24vh] resize-none overflow-y-auto py-4 px-4 bg-gray-100 rounded-2xl text-gray-800 placeholder-gray-400 outline-none border-2 border-gray-100 focus:border-gray-200 focus:border-2 box-border"
+              className="w-full h-[13vh] md:h-[18vh] lg:h-[24vh] resize-none overflow-y-auto py-4 px-4 bg-gray-100 rounded-2xl text-gray-800 placeholder-gray-400 outline-none border-2 border-gray-100 focus:border-gray-200 focus:border-2 box-border"
               placeholder="Tell your plan to your future self."
             ></textarea>
             <input
@@ -110,7 +110,7 @@ function Plan() {
             </div>
             {console.log("checkbox is: ", checked)}
             {/* <div className="w-full flex flex-col gap-4 mt-4 border-2"> */}
-            <div className="w-full mt-6 box-border flex gap-3 justify-start items-center">
+            <div className="w-full mt-6 box-border flex flex-col md:flex-row gap-3 justify-start items-center">
               <button
                 className="flex justify-center items-center gap-2 bg-primaryBrandOptColor text-white py-[10px] px-4 w-full rounded-lg"
                 type="submit"

@@ -1,6 +1,7 @@
 const User = require("../models/user.model.js");
 const bcrypt = require("bcrypt");
 const admin = require("../firebase.js");
+const crypto = require("crypto"); // For Gravatar
 
 exports.addUser = async (req, res) => {
   try {
@@ -26,9 +27,24 @@ exports.addUser = async (req, res) => {
     //   `uid is ${uid} name is ${name}, email is ${email}, picture is ${picture}`
     // );
 
+    // Use fullName from request body (for Email/Password Sign-Up) or fall back to decodedToken.name (for Google Sign-In)
+    //and if both are not available then give empty
+    const userName = req.body.fullName || name || "";
+
+    // A custom profile image URL since email/password has no picture but since the google signin has so it uses 'picture' (e.g., for Email/Password users)
+    const avatarUrl =
+      picture ||
+      `https://thumbs.dreamstime.com/b/default-avatar-profile-image-vector-social-media-user-icon-potrait-182347582.jpg` ||
+      `https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=`;
+
     const findUser = await User.findOne({ email });
     if (!findUser) {
-      const addUser = await User.create({ uid, name, email, picture });
+      const addUser = await User.create({
+        uid,
+        name: userName,
+        email,
+        picture: avatarUrl,
+      });
       if (!addUser)
         return res
           .status(400)

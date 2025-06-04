@@ -7,10 +7,12 @@ import {
   CalendarIcon,
   FlagIcon,
   ArrowLeftStartOnRectangleIcon,
+  ViewColumnsIcon,
+  Squares2X2Icon,
 } from "@heroicons/react/24/outline";
 import { BlurContext } from "../App.jsx";
 
-function Sidebar() {
+function Sidebar({ expanded, setExpanded }) {
   const navigate = useNavigate();
   const location = useLocation(); //get location first
   const locationEndpoint = location.pathname.split("/")[1]; //and then split and get the endpoint to set active
@@ -53,17 +55,34 @@ function Sidebar() {
 
   return (
     <div
-      className={`flex flex-col justify-between items-center w-full h-full shadow-md shadow-gray-300 px-3 py-2 font-primaryMedium text-sm ${
+      className={`flex flex-col justify-between items-center ${
+        expanded ? "w-full" : "w-full"
+      } md:w-full h-full shadow-md shadow-gray-300 px-3 py-2 font-primaryMedium text-sm ${
         blur && ""
       }`}
     >
       <div className="flex flex-col gap-0 w-full">
-        <div className="mb-7 mt-3 w-[100px]">
+        <div
+          className={`mb-7 mt-3 flex ${
+            expanded ? "justify-between" : "justify-center"
+          }  md:justify-start`}
+        >
           {/* <h3 className="px-3 py-2 text-lg font-primarySemiBold w-full">
             <span className="text-primaryBrandOptColor">Plan-</span>
             <span className="text-primaryBrandOptColor">It</span>
           </h3> */}
-          <img src="/logo/name&logo.svg" alt="" />
+          <img
+            className={` ${expanded ? "block" : "hidden"} md:block w-[100px]`}
+            src="/logo/name&logo.svg"
+            alt=""
+          />
+          <button
+            onClick={() => setExpanded(!expanded)}
+            type="button"
+            className="block md:hidden text-primaryBrandOptColor"
+          >
+            <Squares2X2Icon className="size-6" />
+          </button>
         </div>
         <Link
           to="/idea"
@@ -75,9 +94,15 @@ function Sidebar() {
           <LightBulbIcon
             className={`${
               isActive === "idea" ? "text-gray-600" : "text-gray-400 "
-            } size-[19px]`}
+            } size-5`}
           />
-          <p className="font-primarySemiBold text-base">Idea</p>
+          <p
+            className={`${
+              expanded ? "block" : "hidden md:block"
+            } font-primarySemiBold -ml-[2px] text-base`}
+          >
+            Idea
+          </p>
         </Link>
         <Link
           to="/archive"
@@ -91,7 +116,13 @@ function Sidebar() {
               isActive === "archive" ? "text-gray-600" : "text-gray-400 "
             } size-4`}
           />
-          <p className="font-primarySemiBold text-base">Archive</p>
+          <p
+            className={`${
+              expanded ? "block" : "hidden md:block"
+            } font-primarySemiBold text-base`}
+          >
+            Archive
+          </p>
         </Link>
         <Link
           to="/plan"
@@ -105,7 +136,13 @@ function Sidebar() {
               isActive === "plan" ? "text-gray-600" : "text-gray-400 "
             } size-4`}
           />
-          <p className="font-primarySemiBold text-base">Plan</p>
+          <p
+            className={`${
+              expanded ? "block" : "hidden md:block"
+            } font-primarySemiBold text-base`}
+          >
+            Plan
+          </p>
         </Link>
         <Link
           to="/milestone"
@@ -119,13 +156,25 @@ function Sidebar() {
               isActive === "milestone" ? "text-gray-600" : "text-gray-400 "
             } size-4`}
           />
-          <p className="font-primarySemiBold text-base">Milestone</p>
+          <p
+            className={`${
+              expanded ? "block" : "hidden md:block"
+            } font-primarySemiBold text-base`}
+          >
+            Milestone
+          </p>
         </Link>
       </div>
       <div className=" flex flex-col items-start w-full gap-3">
-        <div className="flex  items-center gap-3 py-2 w-full rounded-sm">
+        <div
+          className={`flex ${
+            expanded
+              ? "flex-row items-center justify-between"
+              : "flex-col items-center"
+          } md:flex-row  md:items-center md:justify-between gap-3 py-2 w-full rounded-sm`}
+        >
           {/* <hr className="w-full border-[1.2px] border-gray-200" /> */}
-          <div className="w-full flex justify-center items-center gap-2">
+          <div className="w-fit flex justify-center items-center gap-2">
             {userInfo ? (
               // <div className="w-9 h-9 bg-red-400 rounded-full overflow-hidden  border-[2px] border-primaryBrandOptColor">
               <img
@@ -137,7 +186,11 @@ function Sidebar() {
               // </div>
               ""
             )}
-            <p className="flex-1 text-sm font-primarySemiBold text-gray-600">
+            <p
+              className={`flex-1 ${
+                expanded ? "block" : "hidden"
+              }  md:block text-sm font-primarySemiBold text-gray-600`}
+            >
               {userInfo ? userInfo.name : "Guest"}
               {/* {console.log("user datait got from backend are: ", userInfo)} */}
             </p>

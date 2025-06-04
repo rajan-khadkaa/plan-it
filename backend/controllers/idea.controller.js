@@ -7,6 +7,7 @@ exports.getAllIdeas = async (req, res) => {
   try {
     const { uid } = req.user;
     const ideaData = await Idea.find({ uid }).sort({ createdAt: -1 });
+    // console.log("ideas sent to frontend: ", ideaData);
     if (!ideaData || ideaData.length === 0)
       return res.status(400).json({ message: "No idea records found." });
     res.status(200).json(ideaData);
@@ -38,15 +39,25 @@ exports.addIdea = async (req, res) => {
     if (req.file) {
       const localFilePath = req.file.path;
       const uploadResult = await uploadOnCLoudinary(localFilePath);
+      // console.log("image upload returns: ", uploadResult);
       // console.log("uploaded file info is: ", uploadResult);
-      imageUrl = uploadResult.url;
+      imageUrl = uploadResult.url; //the url of the image is returned by cloudinary
+      imgPublicId = uploadResult.public_id; //this is the public id that is stored in db so later used to delete the image from cloudinary.
       // console.log("url of image is: ", imageUrl);
+      // console.log(" Image public key is: ", imgPublicId);
 
       //after upload delete the image file
       fs.unlinkSync(localFilePath);
     }
     // const allData = { ...ideaData, uid: uid };
-    const allData = { title, content, tags: parsedTags, image: imageUrl, uid };
+    const allData = {
+      title,
+      content,
+      tags: parsedTags,
+      image: imageUrl,
+      imgPublicId,
+      uid,
+    };
     const insertIdea = await Idea.create(allData);
     if (!insertIdea)
       return res.status(400).json({ message: "Could not add idea record." });
@@ -113,8 +124,8 @@ exports.deleteIdea = async (req, res) => {
 
     // Delete the image from Cloudinary
     if (idea.image) {
-      const publicId = idea.image.split("/").pop().split(".")[0];
-      await cloudinary.uploader.destroy(publicId);
+      const publicId = idea.imgPublicId;
+      await cloudinary.uploader.destroy(publicId); // this deletes the image from the cloudinary as well.
     }
 
     // // Delete the idea document from the database

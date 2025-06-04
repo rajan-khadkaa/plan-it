@@ -5,11 +5,11 @@ function PlanPopup({ plan, onClose }) {
   return (
     <div
       onClick={onClose}
-      className="flex fixed inset-0 bg-black/40 backdrop-blur-[2px]  justify-center items-center w-full h-full "
+      className="flex absolute inset-0 w-full bg-black/40 backdrop-blur-[2px]  justify-center items-center"
     >
       <div
         onClick={(event) => event.stopPropagation()}
-        className="border-[1.8px] border-gray-200 bg-white flex relative flex-col justify-start p-4 rounded-md min-w-[40%] max-w-[50%]"
+        className="border-[1.8px] border-gray-200 bg-white flex relative flex-col justify-start p-4 rounded-md w-[80%] md:w-[60%] lg:w-[45%]"
       >
         <button
           onClick={onClose}
@@ -18,14 +18,14 @@ function PlanPopup({ plan, onClose }) {
           <XCircleIcon className="size-7" />
         </button>
         <div className="w-full flex gap-4 mr-6">
-          <div className="flex flex-col gap-1">
+          <div className="flex w-full flex-col gap-1">
             <p className="text-gray-600 font-primarySemiBold">{plan.title}</p>
             <p className="text-gray-400 max-w-[400px] text-xs">
               {plan.date.split("T")[0]}
             </p>
-            <p className="text-gray-500 max-w-[400px] mt-3 text-sm">
-              {plan.message}
-            </p>
+            <div className="w-full mt-3 max-h-[24vh] min-h-fit md:max-h-[18vh] overflow-y-auto">
+              <p className="text-gray-500 text-sm">{plan.message}</p>
+            </div>
           </div>
         </div>
       </div>

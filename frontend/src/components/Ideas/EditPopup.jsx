@@ -85,11 +85,11 @@ function EditPopup({ idea, onClose }) {
     // <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
     <div
       onClick={onClose}
-      className="flex fixed inset-0 bg-black/40 backdrop-blur-[2px] justify-center items-center w-full h-full"
+      className="flex absolute inset-0 w-full border-2 border-blue-400 bg-black/40 backdrop-blur-[2px]  justify-center items-center"
     >
       <div
         onClick={(event) => event.stopPropagation()}
-        className="border-[1.8px] border-gray-200 bg-white flex flex-col justify-start px-6 py-6 rounded-2xl w-[50%]"
+        className="border-[1.8px] border-gray-200 bg-white flex flex-col justify-start px-6 py-6 rounded-2xl w-[90%] md:w-[80%] lg:w-[60%]"
       >
         <div className="w-full flex justify-between items-start mb-2">
           <h3 className="text-sm text-left font-primaryMedium text-gray-500 ml-1 mb-3">
@@ -110,13 +110,13 @@ function EditPopup({ idea, onClose }) {
             <textarea
               value={content}
               onChange={(event) => setContent(event.target.value)}
-              className="w-full min-h-[20vh] max-h-[24vh] resize-none overflow-y-auto py-4 px-4 bg-gray-100 rounded-lg text-gray-800 placeholder-gray-400 outline-none border-2 border-gray-100 focus:border-gray-200 focus:border-2 box-border"
+              className="w-full h-[10vh] md:h-[16vh] lg:h-[20vh] resize-none overflow-y-auto p-2 md:p-4 bg-gray-100 rounded-lg text-gray-800 placeholder-gray-400 outline-none border-2 border-gray-100 focus:border-gray-200 focus:border-2 box-border"
               placeholder="What do you have in mind?"
             ></textarea>
             <input
               value={title}
               onChange={(event) => setTitle(event.target.value)}
-              className="w-full py-3 px-4 bg-gray-100 rounded-lg text-gray-800 placeholder-gray-400 outline-none border-2 border-gray-100 focus:border-2 focus:border-gray-200"
+              className="w-full p-2 md:py-3 md:px-4  bg-gray-100 rounded-lg text-gray-800 placeholder-gray-400 outline-none border-2 border-gray-100 focus:border-2 focus:border-gray-200"
               type="text"
               placeholder="Title"
             />
@@ -160,7 +160,7 @@ function EditPopup({ idea, onClose }) {
                   onClick={() => handleTag("Finance")}
                   className={`${
                     tags.includes("Finance") ? "bg-blue-100" : "bg-gray-100"
-                  } flex gap-[4.9px] justify-center items-center px-8 py-2 rounded-2xl`}
+                  } flex gap-[4.9px] justify-center items-center px-4 py-2 md:px-8 md:py-2 rounded-2xl`}
                 >
                   <BanknotesIcon className="size-4 stroke-[1.6px] text-sky-600" />
                   <p className="text-gray-500">Finance</p>
@@ -172,7 +172,7 @@ function EditPopup({ idea, onClose }) {
                   onClick={() => handleTag("Knowledge")}
                   className={`${
                     tags.includes("Knowledge") ? "bg-blue-100" : "bg-gray-100"
-                  } flex gap-[4.9px] justify-center items-center px-8 py-2 rounded-2xl`}
+                  } flex gap-[4.9px] justify-center items-center px-4 py-2 md:px-8 md:py-2 rounded-2xl`}
                 >
                   <LightBulbIcon className="size-4 stroke-[1.6px] text-orange-600" />
                   <p className="text-gray-500">Knowledge</p>
@@ -184,7 +184,7 @@ function EditPopup({ idea, onClose }) {
                   onClick={() => handleTag("Career")}
                   className={`${
                     tags.includes("Career") ? "bg-blue-100" : "bg-gray-100"
-                  } flex gap-[4.9px] justify-center items-center px-8 py-2 rounded-2xl`}
+                  } flex gap-[4.9px] justify-center items-center px-4 py-2 md:px-8 md:py-2 rounded-2xl`}
                 >
                   <BriefcaseIcon className="size-4 stroke-[1.6px] text-blue-600" />
                   <p className="text-gray-500">Career</p>
@@ -196,7 +196,7 @@ function EditPopup({ idea, onClose }) {
                   onClick={() => handleTag("Health")}
                   className={`${
                     tags.includes("Health") ? "bg-blue-100" : "bg-gray-100"
-                  } flex gap-[4.9px] justify-center items-center px-8 py-2 rounded-2xl`}
+                  } flex gap-[4.9px] justify-center items-center px-4 py-2 md:px-8 md:py-2 rounded-2xl`}
                 >
                   <HeartIcon className="size-4 stroke-[1.6px] text-green-600" />
                   <p className="text-gray-500">Health</p>
@@ -208,7 +208,7 @@ function EditPopup({ idea, onClose }) {
                   onClick={() => handleTag("Creativity")}
                   className={`${
                     tags.includes("Creativity") ? "bg-blue-100" : "bg-gray-100"
-                  } flex gap-[4.9px] justify-center items-center px-8 py-2 rounded-2xl`}
+                  } flex gap-[4.9px] justify-center items-center px-4 py-2 md:px-8 md:py-2 rounded-2xl`}
                 >
                   <PencilSquareIcon className="size-4 stroke-[1.6px] text-teal-600" />
                   <p className="text-gray-500">Creativity</p>
@@ -220,7 +220,7 @@ function EditPopup({ idea, onClose }) {
                   onClick={() => handleTag("Technology")}
                   className={`${
                     tags.includes("Technology") ? "bg-blue-100" : "bg-gray-100"
-                  } flex gap-[4.9px] justify-center items-center px-8 py-2 rounded-2xl`}
+                  } flex gap-[4.9px] justify-center items-center px-4 py-2 md:px-8 md:py-2 rounded-2xl`}
                 >
                   <CpuChipIcon className="size-4 stroke-[1.6px] text-indigo-600" />
                   <p className="text-gray-500">Technology</p>
@@ -232,7 +232,7 @@ function EditPopup({ idea, onClose }) {
                   onClick={() => handleTag("Lifestyle")}
                   className={`${
                     tags.includes("Lifestyle") ? "bg-blue-100" : "bg-gray-100"
-                  } flex gap-[4.9px] justify-center items-center px-8 py-2 rounded-2xl`}
+                  } flex gap-[4.9px] justify-center items-center px-4 py-2 md:px-8 md:py-2 rounded-2xl`}
                 >
                   <SparklesIcon className="size-4 stroke-[1.6px] text-cyan-600" />
                   <p className="text-gray-500">Lifestyle</p>
@@ -244,13 +244,13 @@ function EditPopup({ idea, onClose }) {
                   onClick={() => handleTag("Other")}
                   className={`${
                     tags.includes("Other") ? "bg-blue-100" : "bg-gray-100"
-                  } flex gap-[4.9px] justify-center items-center px-8 py-2 rounded-2xl`}
+                  } flex gap-[4.9px] justify-center items-center px-4 py-2 md:px-8 md:py-2 rounded-2xl`}
                 >
                   <TagIcon className="size-4 stroke-[1.6px] text-purple-600" />
                   <p className="text-gray-500">Other</p>
                 </button>
               </div>
-              <div className="w-full mt-6 box-border flex gap-3 justify-start items-center">
+              <div className="w-full mt-6 box-border flex flex-col md:flex-row gap-3 justify-start items-center">
                 <button
                   className="flex justify-center items-center gap-2 bg-primaryBrandOptColor text-white py-[10px] px-4 w-full rounded-lg"
                   type="submit"
