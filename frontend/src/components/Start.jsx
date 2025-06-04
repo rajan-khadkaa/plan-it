@@ -104,8 +104,8 @@ function Start() {
         </nav>
         <section className="flex w-full flex-col justify-center items-center">
           {/* <h1 className="text-5xl text-white text-center font-primaryBold leading-tight bg-gradient-to-r from-sky-500 via-purple-500 to-red-600 bg-clip-text text-transparent"> */}
-          <h1 className="text-3xl md:text-4xl lg:text-5xl w-full  lg:w-[65%] text-white text-center font-primaryBold leading-tight">
-            Master Your Goals With Productivity System That Works
+          <h1 className="text-4xl lg:text-5xl w-full  lg:w-[65%] text-white text-center font-primaryBold leading-tight">
+            Master Your Goals With a System That Delivers
           </h1>
           <p className="text-lg w-[95%] md:w-[90%] lg:w-[60%] text-gray-300 mt-4 text-center">
             Imagine a place where your ideas are stored, your goals are clear,

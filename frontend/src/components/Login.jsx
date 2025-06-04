@@ -170,7 +170,7 @@ function Login() {
       </div> */}
 
       {/* Right Side: Form */}
-      <div className="w-[90%] md:w-[60%] lg:w-[36%] flex flex-col justify-center items-center bg-white">
+      <div className="w-[96%] md:w-[60%] lg:w-[36%] flex flex-col justify-center items-center bg-white">
         <div className="flex w-[90%] flex-col gap-2 px-4">
           {/* Logo */}
           {/* <img
