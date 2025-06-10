@@ -16,7 +16,7 @@ function ViewPopup({ idea, onClose }) {
       >
         <button
           onClick={onClose}
-          className="w-fit p-0 rounded-full text-gray-400 hover:text-red-600 absolute top-3 right-3"
+          className="w-fit p-1 md:p-0 rounded-full text-gray-400 hover:text-red-600 absolute bg-white top-[0.06rem] right-[0.06rem] md:top-3 md:right-3"
         >
           <XCircleIcon className="size-7" />
         </button>
@@ -33,7 +33,7 @@ function ViewPopup({ idea, onClose }) {
           <div className="flex flex-1 flex-col gap-3">
             <p className="text-gray-600 font-primarySemiBold">{idea.title}</p>
             {idea.tags && idea.tags.length > 0 ? (
-              <ul className="flex gap-1 justify-start items-center">
+              <ul className="flex flex-wrap gap-1 justify-start items-center">
                 {idea.tags.map((item) => (
                   <li
                     className="py-[6px] px-3 rounded-md bg-blue-100 text-gray-600 font-primaryMedium text-xs"
@@ -51,7 +51,7 @@ function ViewPopup({ idea, onClose }) {
               </div>
             )}
 
-            <div className=" flex-1 min-h-[24vh] md:min-h-0 mt-2 overflow-y-auto">
+            <div className="scrollbar-thin pr-[0.30rem] flex-1 h-fit min-h-0  max-h-[200px] mt-2 overflow-y-auto">
               <p className="text-gray-500 text-sm">{idea.content}</p>
             </div>
           </div>

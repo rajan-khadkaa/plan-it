@@ -159,18 +159,18 @@ function Login() {
   };
 
   return (
-    <div className="w-full h-[100vh] flex flex-row items-center justify-center p-0 m-0 box-border">
+    <div className="w-full overflow-y-auto pt-7 pb-10 h-screen lg:h-fit lg:min-h-screen flex flex-row items-center justify-center box-border">
       {/* Left Side: Image */}
-      {/* <div className="w-1/2 border-2 h-[100vh] hidden md:block">
+      {/* <div className="w-1/2 border-2 h-full  flex-col hidden md:block">
         <img
-          className="w-full h-full object-cover"
+          className="w-full h-[80%] object-cover"
           src="/images/image.jpeg"
           alt="Plan-It illustration"
         />
       </div> */}
 
       {/* Right Side: Form */}
-      <div className="w-[96%] md:w-[60%] lg:w-[36%] flex flex-col justify-center items-center bg-white">
+      <div className="w-[100%] md:w-[65%] lg:w-[36%] flex flex-col justify-center items-center bg-white">
         <div className="flex w-[90%] flex-col gap-2 px-4">
           {/* Logo */}
           {/* <img
@@ -179,38 +179,48 @@ function Login() {
             alt="plan-it logo"
           /> */}
           {/* Heading */}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1">
             <h3 className="text-primaryBrandOptColor font-primaryBold text-2xl">
-              {isSignUp ? "Sign Up" : "Sign In"}
+              {isSignUp ? "Sign up for Planit" : "Welcome Back"}
             </h3>
             {/* Supporting Text */}
-            <p className="text-sm font-primaryRegular text-gray-400">
+            <p className="font-primaryRegular text-gray-400">
               {isSignUp
-                ? "Join Plan-It to organize your ideas and goals."
+                ? "Sign up and start organizing your ideas and goals."
                 : "Sign in to manage your goals and track progress."}
             </p>
           </div>
           {/* Toggle between Sign-In and Sign-Up */}
-          <div className="flex gap-4 mt-2">
+          <div className="flex gap-4 mt-4 lg:mt-2">
             <button
-              className={`text-sm font-primaryMedium ${
-                !isSignUp
-                  ? "text-primaryBrandOptColor underline"
-                  : "text-gray-400"
+              className={`overflow-hidden group font-primaryMedium ${
+                !isSignUp ? "text-primaryBrandOptColor" : "text-gray-400"
               }`}
               onClick={() => setIsSignUp(false)}
             >
-              Sign In
+              <p>Sign In</p>
+              <div
+                className={` ${
+                  !isSignUp
+                    ? "translate-x-0"
+                    : "-translate-x-[105%] opacity-0 group-hover:translate-x-[105%] group-hover:opacity-100"
+                } h-[1.2px] w-full transition-transform duration-500  bg-primaryBrandOptColor`}
+              />
             </button>
             <button
-              className={`text-sm font-primaryMedium ${
-                isSignUp
-                  ? "text-primaryBrandOptColor underline"
-                  : "text-gray-400"
+              className={`overflow-hidden group font-primaryMedium ${
+                isSignUp ? "text-primaryBrandOptColor" : "text-gray-400"
               }`}
               onClick={() => setIsSignUp(true)}
             >
-              Sign Up
+              <p>Sign Up</p>
+              <div
+                className={` ${
+                  isSignUp
+                    ? "translate-x-0"
+                    : "-translate-x-[105%] opacity-0 group-hover:translate-x-[105%] group-hover:opacity-100"
+                } h-[1px] w-full transition-transform duration-500  bg-primaryBrandOptColor`}
+              />
             </button>
           </div>
 
@@ -221,7 +231,7 @@ function Login() {
           >
             {isSignUp && (
               <div className="flex flex-col gap-1">
-                <label className="text-sm font-primaryMedium text-gray-600">
+                <label className="text-xs font-primaryMedium text-gray-600">
                   Full Name
                 </label>
                 <input
@@ -230,13 +240,13 @@ function Login() {
                   value={formData.fullName}
                   onChange={handleInputChange}
                   placeholder="Andy Dufresne"
-                  className="py-2 px-3 border-[1.8px] border-gray-300 rounded-sm text-sm font-primaryRegular focus:border-primaryBrandOptColor focus:outline-none"
+                  className="py-[0.62rem] px-3 border-[1.8px] border-gray-300 rounded-sm text-sm font-primaryRegular focus:border-primaryBrandOptColor focus:outline-none"
                   required
                 />
               </div>
             )}
             <div className="flex flex-col gap-1">
-              <label className="text-sm font-primaryMedium text-gray-600">
+              <label className="text-xs font-primaryMedium text-gray-600">
                 Email
               </label>
               <input
@@ -245,12 +255,12 @@ function Login() {
                 value={formData.email}
                 onChange={handleInputChange}
                 placeholder="andydufresne@gmail.com"
-                className="py-2 px-3 border-[1.8px] border-gray-300 rounded-sm text-sm font-primaryRegular focus:border-primaryBrandOptColor focus:outline-none"
+                className="py-[0.62rem] px-3 border-[1.8px] border-gray-300 rounded-sm text-sm font-primaryRegular focus:border-primaryBrandOptColor focus:outline-none"
                 required
               />
             </div>
             <div className="flex flex-col gap-1">
-              <label className="text-sm font-primaryMedium text-gray-600">
+              <label className="text-xs font-primaryMedium text-gray-600">
                 Password
               </label>
               <input
@@ -259,13 +269,13 @@ function Login() {
                 value={formData.password}
                 onChange={handleInputChange}
                 placeholder="Password"
-                className="py-2 px-3 border-[1.8px] border-gray-300 rounded-sm text-sm font-primaryRegular focus:border-primaryBrandOptColor focus:outline-none"
+                className="py-[0.62rem] px-3 border-[1.8px] border-gray-300 rounded-sm text-sm font-primaryRegular focus:border-primaryBrandOptColor focus:outline-none"
                 required
               />
             </div>
             {isSignUp && (
               <div className="flex flex-col gap-1">
-                <label className="text-sm font-primaryMedium text-gray-600">
+                <label className="text-xs font-primaryMedium text-gray-600">
                   Confirm Password
                 </label>
                 <input
@@ -274,7 +284,7 @@ function Login() {
                   value={formData.confirmPassword}
                   onChange={handleInputChange}
                   placeholder="Confirm password"
-                  className="py-2 px-3 border-[1.8px] border-gray-300 rounded-sm text-sm font-primaryRegular focus:border-primaryBrandOptColor focus:outline-none"
+                  className="py-[0.62rem] px-3 border-[1.8px] border-gray-300 rounded-sm text-sm font-primaryRegular focus:border-primaryBrandOptColor focus:outline-none"
                   required
                 />
               </div>
@@ -291,7 +301,7 @@ function Login() {
                 loading
                   ? "text-gray-500 bg-zinc-300 border-zinc-300"
                   : "text-white bg-primaryBrandOptColor border-primaryBrandOptColor hover:bg-primaryBrandColor hover:shadow-lg"
-              } py-3 px-8 w-full border-[1.8px]  text-sm font-primaryMedium rounded-sm transition-colors duration-150`}
+              } py-3 px-8 mt-1 w-full border-[1.8px]  text-sm font-primaryMedium rounded-sm transition-colors duration-150`}
             >
               {isSignUp
                 ? loading

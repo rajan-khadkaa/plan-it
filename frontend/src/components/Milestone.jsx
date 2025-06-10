@@ -76,7 +76,7 @@ function Milestone() {
       >
         {/* UPCOMING PLANS */}
         <div className="flex flex-col items-start gap-1 box-border">
-          <h3 className="text-sm text-gray-400 font-primaryMedium">
+          <h3 className="text-sm mt-10 md:mt-0 text-gray-400 font-primaryMedium">
             Upcoming Plans
           </h3>
           <hr className="border-[1px] border-gray-100 w-full mb-3" />

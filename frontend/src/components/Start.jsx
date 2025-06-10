@@ -44,7 +44,7 @@ function Start() {
   useEffect(() => {
     cardRef.current.forEach((card) => {
       VanillaTilt.init(card, {
-        max: 9,
+        max: 4,
         scale: 1.01,
         glare: true,
         "max-glare": 0.3,
@@ -93,7 +93,7 @@ function Start() {
               src="/logo/icon.svg"
               alt="plan-it logo"
             />
-            <p className="text-white font-primaryMedium text-lg">Plan-It</p>
+            <p className="text-white font-primarySemiBold text-2xl">Planit</p>
           </div>
           <button
             onClick={() => navigate("/login")}
@@ -133,11 +133,11 @@ function Start() {
                 <p className="text-sm text-gray-400 font-primarySemiBold">
                   {content.suppText}
                 </p>
-                <h5 className="mt-1 text-2xl md:text-3xl w-fit font-primarySemiBold bg-gradient-to-r from-sky-500 via-purple-500 to-red-600 bg-clip-text text-transparent">
+                <h5 className="mt-1 text-3xl w-fit font-primarySemiBold bg-gradient-to-r from-sky-500 via-purple-500 to-red-600 bg-clip-text text-transparent">
                   {content.headText}
                 </h5>
                 <div className="bg-[#23242d] mt-6 px-3 py-3 rounded-lg">
-                  <p className="text-sm text-gray-400">{content.descText}</p>
+                  <p className=" text-gray-400">{content.descText}</p>
                 </div>
               </div>
             ))}
@@ -147,7 +147,7 @@ function Start() {
           <span className="dotIcon relative flex items-center bg-gray-400 text-gray-50 rounded-full px-6 py-2 bg-opacity-10 text-[10px] font-primaryMedium tracking-wide">
             WORKFLOW
           </span>
-          <h3 className="text-3xl md:text-4xl w-[95%] sm:w-[90%] lg:w-[75%] text-gray-200 text-center font-primaryBold leading-tight mt-5">
+          <h3 className="text-4xl w-[95%] sm:w-[90%] lg:w-[75%] text-gray-200 text-center font-primaryBold leading-tight mt-5">
             How It Works
           </h3>
           <div className="w-[95%] sm:w-[90%] lg:w-[75%] flex flex-col gap-3 items-start mt-12">
@@ -166,12 +166,12 @@ function Start() {
                     <LightBulbIcon className="size-6 text-gray-400" />
                   </span>
                 </p>
-                <h5 className="text-[22px] font-primarySemiBold text-gray-200 mt-4">
+                <h5 className="text-2xl font-primarySemiBold text-gray-200 mt-4">
                   Add Ideas
                 </h5>
-                <p className="text-gray-400 text-sm mt-2">
+                <p className="text-gray-400 mt-2">
                   Write down your ideas and organize them into categories. Save
-                  them in the archive.
+                  them in the collection.
                 </p>
               </div>
             </div>
@@ -191,10 +191,10 @@ function Start() {
                     <PresentationChartLineIcon className="size-6 text-gray-400" />
                   </span>
                 </p>
-                <h5 className="text-[22px] font-primarySemiBold text-gray-200 mt-4">
+                <h5 className="text-2xl font-primarySemiBold text-gray-200 mt-4">
                   Plan & Track
                 </h5>
-                <p className="text-gray-400 text-sm mt-2">
+                <p className="text-gray-400 mt-2">
                   Convert ideas into goals by setting milestones and keep track
                   of your progress.
                 </p>
@@ -216,10 +216,10 @@ function Start() {
                     <FlagIcon className="size-6 text-gray-400" />
                   </span>
                 </p>
-                <h5 className="text-[22px] font-primarySemiBold text-gray-200 mt-4">
+                <h5 className="text-2xl font-primarySemiBold text-gray-200 mt-4">
                   Achieve Goals
                 </h5>
-                <p className="text-gray-400 text-sm mt-2">
+                <p className="text-gray-400 mt-2">
                   Complete your goals by following your plan and track
                   achievements to accomplish more.
                 </p>
@@ -231,10 +231,10 @@ function Start() {
           <span className="dotIcon relative flex items-center bg-gray-400 text-gray-50 rounded-full px-6 py-2 bg-opacity-10 text-[10px] font-primaryMedium tracking-wide">
             LAUNCH
           </span>
-          <h3 className="text-3xl md:text-4xl w-[95%] sm:w-[90%] lg:w-[75%] text-gray-200 text-center font-primaryBold leading-tight mt-5">
+          <h3 className="text-4xl md:text-4xl w-[95%] sm:w-[90%] lg:w-[75%] text-gray-200 text-center font-primaryBold leading-tight mt-5">
             Ready to Turn Your Ideas into Reality?
           </h3>
-          <p className="text-gray-400 text-sm sm:text-base mt-4 w-[90%] sm:w-[60%]">
+          <p className="text-gray-400  mt-4 w-[90%] sm:w-[60%]">
             Organize your thoughts, plan your future, and accomplish more with
             Plan-It. Start your journey today!
           </p>
@@ -259,7 +259,7 @@ function Start() {
                 src="/logo/icon.svg"
                 alt="plan-it logo"
               />
-              <p className="text-white font-primaryMedium text-lg">Plan-It</p>
+              <p className="text-white font-primarySemiBold text-2xl">Planit</p>
             </div>
             <p className="text-gray-100 text-sm">
               © 2025 Plan-it. All rights reserved.

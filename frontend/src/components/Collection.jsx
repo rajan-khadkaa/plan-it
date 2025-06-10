@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import api from "../api/api";
-import ViewPopup from "./Ideas/ViewPopup";
+import api from "../api/api.js";
+import ViewPopup from "./Ideas/ViewPopup.jsx";
 import {
   EyeIcon,
   ArrowUturnLeftIcon,
@@ -9,11 +9,11 @@ import {
   TrashIcon,
   MinusCircleIcon,
 } from "@heroicons/react/24/outline";
-import EditPopup from "./Ideas/EditPopup";
+import EditPopup from "./Ideas/EditPopup.jsx";
 import { useContext } from "react";
 import { BlurContext } from "../App.jsx";
 
-function Archieve() {
+function Collection() {
   const [ideas, setIdeas] = useState([]);
   const [firstThreeIdeas, setfirstThreeIdeas] = useState([]);
   const [remainingIdeas, setRemainingIdeas] = useState([]);
@@ -113,7 +113,7 @@ function Archieve() {
             >
               Open Popup
             </button> */}
-          <h3 className="text-sm text-gray-400 font-primaryMedium">
+          <h3 className="text-sm mt-10 md:mt-0 text-gray-400 font-primaryMedium">
             Upcoming Ideas
           </h3>
           <hr className="border-[1px] border-gray-100 w-full mb-3" />
@@ -340,7 +340,7 @@ function Archieve() {
   );
 }
 
-export default Archieve;
+export default Collection;
 
 {
   /* <div className="w-full flex items-start gap-3">
