@@ -35,37 +35,78 @@ exports.addIdea = async (req, res) => {
     const { uid } = req.user;
 
     const parsedTags = JSON.parse(tags);
+
+    // Declare BOTH variables here, before the if block so even if no image is uploaded then it still works
     let imageUrl = null;
+    let imgPublicId = null; // missing  ths line caused me error as if no image was uploaded in frontend then it was not working
+
     if (req.file) {
       const localFilePath = req.file.path;
       const uploadResult = await uploadOnCLoudinary(localFilePath);
-      // console.log("image upload returns: ", uploadResult);
-      // console.log("uploaded file info is: ", uploadResult);
-      imageUrl = uploadResult.url; //the url of the image is returned by cloudinary
-      imgPublicId = uploadResult.public_id; //this is the public id that is stored in db so later used to delete the image from cloudinary.
-      // console.log("url of image is: ", imageUrl);
-      // console.log(" Image public key is: ", imgPublicId);
-
-      //after upload delete the image file
+      imageUrl = uploadResult.url;
+      imgPublicId = uploadResult.public_id; // this just assigns a value to the existing variable
       fs.unlinkSync(localFilePath);
     }
-    // const allData = { ...ideaData, uid: uid };
+
     const allData = {
       title,
       content,
       tags: parsedTags,
       image: imageUrl,
-      imgPublicId,
+      imgPublicId, // this variable is guaranteed to exist (will be `null` if no file)
       uid,
     };
+
     const insertIdea = await Idea.create(allData);
-    if (!insertIdea)
+
+    if (!insertIdea) {
       return res.status(400).json({ message: "Could not add idea record." });
-    res.status(200).json(insertIdea);
+    }
+
+    res.status(201).json(insertIdea); // Good practice to use 201 for "Created"
   } catch (error) {
+    // Improved error logging for future debugging
+    console.error("Error in addIdea:", error);
     res.status(500).json({ message: error.message });
   }
 };
+// exports.addIdea = async (req, res) => {
+//   try {
+//     const { title, content, tags } = req.body;
+//     const { uid } = req.user;
+
+//     const parsedTags = JSON.parse(tags);
+//     let imageUrl = null;
+//     if (req.file) {
+//       const localFilePath = req.file.path;
+//       const uploadResult = await uploadOnCLoudinary(localFilePath);
+//       // console.log("image upload returns: ", uploadResult);
+//       // console.log("uploaded file info is: ", uploadResult);
+//       imageUrl = uploadResult.url; //the url of the image is returned by cloudinary
+//       imgPublicId = uploadResult.public_id; //this is the public id that is stored in db so later used to delete the image from cloudinary.
+//       // console.log("url of image is: ", imageUrl);
+//       // console.log(" Image public key is: ", imgPublicId);
+
+//       //after upload delete the image file
+//       fs.unlinkSync(localFilePath);
+//     }
+//     // const allData = { ...ideaData, uid: uid };
+//     const allData = {
+//       title,
+//       content,
+//       tags: parsedTags,
+//       image: imageUrl,
+//       imgPublicId,
+//       uid,
+//     };
+//     const insertIdea = await Idea.create(allData);
+//     if (!insertIdea)
+//       return res.status(400).json({ message: "Could not add idea record." });
+//     res.status(200).json(insertIdea);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// };
 
 // exports.addIdea = async (req, res) => {
 //   try {
