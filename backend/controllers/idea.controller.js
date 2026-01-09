@@ -40,12 +40,50 @@ exports.addIdea = async (req, res) => {
     let imageUrl = null;
     let imgPublicId = null; // missing  ths line caused me error as if no image was uploaded in frontend then it was not working
 
+    //MIGHT CAUSE ISSUES SO NEW LOGIC IS ADDED BELOW
+    // if (req.file) {
+    //   const localFilePath = req.file.path;
+    //   const uploadResult = await uploadOnCLoudinary(localFilePath);
+    //   imageUrl = uploadResult.url;
+    //   imgPublicId = uploadResult.public_id; // this just assigns a value to the existing variable
+    //   fs.unlinkSync(localFilePath);
+    // }
+
     if (req.file) {
       const localFilePath = req.file.path;
-      const uploadResult = await uploadOnCLoudinary(localFilePath);
-      imageUrl = uploadResult.url;
-      imgPublicId = uploadResult.public_id; // this just assigns a value to the existing variable
-      fs.unlinkSync(localFilePath);
+
+      try {
+        // 1. First upload to Cloudinary
+        const uploadResult = await uploadOnCLoudinary(localFilePath);
+        imageUrl = uploadResult.url;
+        imgPublicId = uploadResult.public_id;
+      } catch (cloudinaryError) {
+        // If Cloudinary fails, try to clean up the temp file
+        console.error("Cloudinary upload failed:", cloudinaryError.message);
+        try {
+          if (fs.existsSync(localFilePath)) {
+            fs.unlinkSync(localFilePath);
+          }
+        } catch (e) {
+          /* ignore */
+        }
+
+        return res.status(500).json({ message: "Image upload failed." });
+      }
+
+      // 2. AFTER successful Cloudinary upload, try to delete local temp file
+      try {
+        if (fs.existsSync(localFilePath)) {
+          fs.unlinkSync(localFilePath);
+          console.log("Temp file deleted successfully.");
+        }
+      } catch (unlinkError) {
+        // Don't fail the request if we can't delete the temp file
+        console.warn(
+          "Could not delete temp file (non-critical):",
+          unlinkError.message
+        );
+      }
     }
 
     const allData = {
